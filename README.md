@@ -2,7 +2,7 @@
 
 # Amadeus
 
-<img width="300" height="300" alt="amadeus_logo" src="https://github.com/user-attachments/assets/b251aa47-346f-4a32-859b-a4136829119f" />
+<img width="370" height="370" alt="amadeus_logo2" src="https://github.com/user-attachments/assets/173b5b60-8d66-43c6-a03f-e4c3298232d9" />
 
 </div>
 
