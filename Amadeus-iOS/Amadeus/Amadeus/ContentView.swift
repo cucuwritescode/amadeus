@@ -9,9 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        // For now, show our microphone experiment
-        // Later we'll add navigation to different experiments
-        MicrophoneExperimentView()
+        // show the chord detection view with fake detector
+        ChordDetectionView()
     }
 }
 
