@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		82B9126A2E52DD0600717D0E /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 82B912692E52DD0600717D0E /* AudioKit */; };
+		82B9126D2E52DD5500717D0E /* Tonic in Frameworks */ = {isa = PBXBuildFile; productRef = 82B9126C2E52DD5500717D0E /* Tonic */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		82B9124C2E52DAF800717D0E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82B9126D2E52DD5500717D0E /* Tonic in Frameworks */,
+				82B9126A2E52DD0600717D0E /* AudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +119,8 @@
 			);
 			name = Amadeus;
 			packageProductDependencies = (
+				82B912692E52DD0600717D0E /* AudioKit */,
+				82B9126C2E52DD5500717D0E /* Tonic */,
 			);
 			productName = Amadeus;
 			productReference = 82B9123E2E52DAF600717D0E /* Amadeus.app */;
@@ -195,6 +204,10 @@
 			);
 			mainGroup = 82B912352E52DAF600717D0E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				82B912682E52DD0600717D0E /* XCLocalSwiftPackageReference "../../swift_libs/AudioKit" */,
+				82B9126B2E52DD5500717D0E /* XCLocalSwiftPackageReference "../../swift_libs/Tonic" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 82B9123F2E52DAF600717D0E /* Products */;
 			projectDirPath = "";
@@ -393,10 +406,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Amadeus needs microphone access to detect chords from live audio";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -420,10 +435,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Amadeus needs microphone access to detect chords from live audio";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -550,6 +567,28 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		82B912682E52DD0600717D0E /* XCLocalSwiftPackageReference "../../swift_libs/AudioKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../swift_libs/AudioKit;
+		};
+		82B9126B2E52DD5500717D0E /* XCLocalSwiftPackageReference "../../swift_libs/Tonic" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../swift_libs/Tonic;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		82B912692E52DD0600717D0E /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AudioKit;
+		};
+		82B9126C2E52DD5500717D0E /* Tonic */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Tonic;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 82B912362E52DAF600717D0E /* Project object */;
 }
