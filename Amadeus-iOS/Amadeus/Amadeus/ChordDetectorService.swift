@@ -44,6 +44,9 @@ protocol ChordDetectorService {
     /// analyses audio and returns detected chord
     func detectChord(from amplitude: Float) -> ChordResult
     
+    /// analyses frequency data and returns detected chord
+    func detectChord(from frequencyData: [Float], sampleRate: Float) -> ChordResult
+    
     /// resets internal state (if any)
     func reset()
     
@@ -138,6 +141,13 @@ class FakeChordDetector: ChordDetectorService {
         )
     }
     
+    /// simulates chord detection from frequency data
+    func detectChord(from frequencyData: [Float], sampleRate: Float) -> ChordResult {
+        // Calculate amplitude from frequency data for fake detector
+        let amplitude = frequencyData.reduce(0, +) / Float(frequencyData.count)
+        return detectChord(from: amplitude)
+    }
+    
     /// resets the detector state
     func reset() {
         selectNewProgression()
@@ -198,27 +208,123 @@ class FakeChordDetector: ChordDetectorService {
 // this is where the real chord detection will go
 
 /// real chord detector using FFT and chroma analysis
-/// TODO: Implement this with actual audio processing
 class RealChordDetector: ChordDetectorService {
     
-    var isReady: Bool = false
+    var isReady: Bool = true
+    
+    // Chord templates for matching (12 semitones, major and minor triads)
+    private let chordTemplates: [String: [Float]] = [
+        // Major chords (root, major third, perfect fifth)
+        "C":  [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0],
+        "D":  [0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0],
+        "E":  [0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0],
+        "F":  [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0],
+        "G":  [0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0],
+        "A":  [0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0],
+        "B":  [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0],
+        
+        // Minor chords (root, minor third, perfect fifth)
+        "Am": [0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0],
+        "Dm": [0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0],
+        "Em": [0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0],
+        "Gm": [0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0]
+    ]
     
     init() {
-        // TODO: Initialize FFT, chroma extraction, etc.
-        print("RealChordDetector: Not yet implemented - using fake detector")
+        print("RealChordDetector: Initialized with FFT-based detection")
     }
     
     func detectChord(from amplitude: Float) -> ChordResult {
-        // TODO: Implement real chord detection
-        // 1))) get FFT data from audio buffer
-        // 2))) extract chroma features
-        // 3))) match against chord templates
-        // 4))) use Tonic to name the chord properly
-        
+        // Backward compatibility - just return no chord
         return ChordResult.noChord
     }
     
+    func detectChord(from frequencyData: [Float], sampleRate: Float) -> ChordResult {
+        // Convert FFT to chromagram
+        let chromagram = computeChromagram(from: frequencyData, sampleRate: sampleRate)
+        
+        // Match against templates
+        var bestMatch = ""
+        var bestScore: Float = 0.0
+        
+        for (chordName, template) in chordTemplates {
+            let score = correlate(chromagram, template)
+            if score > bestScore {
+                bestScore = score
+                bestMatch = chordName
+            }
+        }
+        
+        // Determine confidence
+        let confidence = min(bestScore / 3.0, 1.0)
+        
+        if confidence < 0.3 {
+            return ChordResult.noChord
+        }
+        
+        // Parse chord info
+        let isMinor = bestMatch.contains("m")
+        let root = bestMatch.replacingOccurrences(of: "m", with: "")
+        let quality = isMinor ? "minor" : "major"
+        
+        return ChordResult(
+            chord: nil,
+            chordName: bestMatch,
+            confidence: confidence,
+            timestamp: Date(),
+            rootNote: root,
+            quality: quality
+        )
+    }
+    
     func reset() {
-        // TODO: reset any internal state
+        // No state to reset
+    }
+    
+    // MARK: - Private Methods
+    
+    private func computeChromagram(from fftData: [Float], sampleRate: Float) -> [Float] {
+        var chroma = [Float](repeating: 0.0, count: 12)
+        let binCount = fftData.count
+        
+        for bin in 1..<binCount/2 {
+            let frequency = Float(bin) * sampleRate / Float(binCount)
+            
+            if frequency < 80.0 { continue }
+            if frequency > 4000.0 { break }
+            
+            let pitchClass = frequencyToPitchClass(frequency)
+            chroma[pitchClass] += fftData[bin]
+        }
+        
+        // Normalize
+        let maxValue = chroma.max() ?? 1.0
+        if maxValue > 0 {
+            for i in 0..<12 {
+                chroma[i] /= maxValue
+            }
+        }
+        
+        return chroma
+    }
+    
+    private func frequencyToPitchClass(_ frequency: Float) -> Int {
+        let A4: Float = 440.0
+        let C0 = A4 * pow(2.0, -4.75)
+        
+        if frequency <= 0 { return 0 }
+        
+        let semitones = 12.0 * log2(frequency / C0)
+        let pitchClass = Int(semitones.rounded()) % 12
+        
+        return pitchClass >= 0 ? pitchClass : pitchClass + 12
+    }
+    
+    private func correlate(_ vector1: [Float], _ vector2: [Float]) -> Float {
+        var sum: Float = 0.0
+        for i in 0..<min(vector1.count, vector2.count) {
+            sum += vector1[i] * vector2[i]
+        }
+        return sum
     }
 }

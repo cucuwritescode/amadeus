@@ -19,7 +19,7 @@ class ChordDetectionViewModel: ObservableObject {
     private let engine = AudioEngine()
     private var mic: AudioEngine.InputNode?
     private var mixer: Mixer?
-    private var amplitudeTap: AmplitudeTap?
+    private var fftTap: FFTTap?  // Changed from AmplitudeTap
     
     // MARK: - Detection Components
     private let detector: ChordDetectorService
@@ -30,13 +30,17 @@ class ChordDetectionViewModel: ObservableObject {
     @Published var amplitude: Float = 0.0
     @Published var errorMessage: String?
     
+    // MARK: - FFT Data
+    private var frequencyData: [Float] = []
+    private let sampleRate: Float = 44100.0
+    
     // MARK: - Detection Settings
     private var detectionTimer: Timer?
     private let detectionInterval: TimeInterval = 0.1  // detect 10 times per second
     
     // MARK: - Initialisation
     
-    init(useRealDetector: Bool = false) {
+    init(useRealDetector: Bool = true) {  // Default to real detector now
         // choose which detector to use
         self.detector = useRealDetector ? RealChordDetector() : FakeChordDetector()
         
@@ -68,13 +72,21 @@ class ChordDetectionViewModel: ObservableObject {
             // start engine
             try engine.start()
             
-            // set up amplitude monitoring
-            amplitudeTap = AmplitudeTap(input) { [weak self] amp in
+            // Set up FFT monitoring (NEW)
+            fftTap = FFTTap(input, bufferSize: 2048, callbackQueue: .main) { [weak self] fftData in
+                guard let self = self else { return }
+                
+                // Store frequency data
+                self.frequencyData = Array(fftData)
+                
+                // Calculate amplitude from FFT data
+                let amp = fftData.reduce(0, +) / Float(fftData.count)
+                
                 DispatchQueue.main.async {
-                    self?.amplitude = amp
+                    self.amplitude = amp
                 }
             }
-            amplitudeTap?.start()
+            fftTap?.start()
             
             // start chord detection timer
             startDetectionTimer()
@@ -95,13 +107,14 @@ class ChordDetectionViewModel: ObservableObject {
         detectionTimer = nil
         
         // stop audio
-        amplitudeTap?.stop()
+        fftTap?.stop()
         engine.stop()
         
         // update state
         isListening = false
         currentChord = .noChord
         amplitude = 0.0
+        frequencyData = []
     }
     
     // MARK: - Private Methods
@@ -113,9 +126,13 @@ class ChordDetectionViewModel: ObservableObject {
         }
     }
     
-    /// performs chord detection based on current amplitude
+    /// performs chord detection based on frequency data
     private func performDetection() {
-        let result = detector.detectChord(from: amplitude)
+        // Skip if no frequency data
+        guard !frequencyData.isEmpty else { return }
+        
+        // Use frequency-based detection
+        let result = detector.detectChord(from: frequencyData, sampleRate: sampleRate)
         
         // only update if chord changed or confidence significantly different
         if result.chordName != currentChord.chordName ||
@@ -137,7 +154,7 @@ struct ChordDetectionView: View {
         VStack(spacing: 30) {
             
             // MARK: - Header
-            Text("🎸 Chord Detector")
+            Text("🎹 Chord Detector")
                 .font(.largeTitle)
                 .fontWeight(.bold)
             
