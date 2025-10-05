@@ -64,23 +64,23 @@ class ChordDetectionViewModel: ObservableObject {
             }
             mic = input
             
-            // set up mixer (silent output to prevent feedback)
+            // Set up mixer (AudioKit handles stereo/mono automatically)
             mixer = Mixer(input)
-            mixer?.volume = 0.0
+            mixer?.volume = 0.0 // Silent output to prevent feedback
             engine.output = mixer
             
             // start engine
             try engine.start()
             
-            // Set up FFT monitoring (NEW)
+            // Set up FFT monitoring 
             fftTap = FFTTap(input, bufferSize: 2048, callbackQueue: .main) { [weak self] fftData in
                 guard let self = self else { return }
                 
                 // Store frequency data
                 self.frequencyData = Array(fftData)
                 
-                // Calculate amplitude from FFT data
-                let amp = fftData.reduce(0, +) / Float(fftData.count)
+                // Calculate amplitude from FFT data  
+                let amp = fftData.reduce(0) { $0 + abs($1) } / Float(fftData.count)
                 
                 DispatchQueue.main.async {
                     self.amplitude = amp

@@ -207,124 +207,86 @@ class FakeChordDetector: ChordDetectorService {
 // MARK: - Real Implementation Placeholder
 // this is where the real chord detection will go
 
-/// real chord detector using FFT and chroma analysis
+/// Real chord detector using CQT and advanced chord recognition
 class RealChordDetector: ChordDetectorService {
     
     var isReady: Bool = true
     
-    // Chord templates for matching (12 semitones, major and minor triads)
-    private let chordTemplates: [String: [Float]] = [
-        // Major chords (root, major third, perfect fifth)
-        "C":  [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0],
-        "D":  [0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0],
-        "E":  [0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0],
-        "F":  [1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0],
-        "G":  [0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0],
-        "A":  [0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0],
-        "B":  [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0],
-        
-        // Minor chords (root, minor third, perfect fifth)
-        "Am": [0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0],
-        "Dm": [0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0],
-        "Em": [0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0],
-        "Gm": [0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0]
-    ]
+    /// CQT processor for computing chromagrams
+    private let cqtProcessor = CQTProcessor()
+    
+    /// Advanced chord recogniser using template matching
+    private let chordRecogniser = ChordRecogniser()
     
     init() {
-        print("RealChordDetector: Initialized with FFT-based detection")
+        print("RealChordDetector: Initialised with CQT-based detection")
     }
     
     func detectChord(from amplitude: Float) -> ChordResult {
-        // Backward compatibility - just return no chord
+        // Backward compatibility - CQT doesn't use simple amplitude
         return ChordResult.noChord
     }
     
     func detectChord(from frequencyData: [Float], sampleRate: Float) -> ChordResult {
-        // Convert FFT to chromagram
-        let chromagram = computeChromagram(from: frequencyData, sampleRate: sampleRate)
+        // Process through CQT to get high-quality chromagram
+        let chromagram = cqtProcessor.process(audioBuffer: frequencyData)
         
-        // Match against templates
-        var bestMatch = ""
-        var bestScore: Float = 0.0
+        // Use advanced chord recognition
+        let (template, confidence) = chordRecogniser.recogniseChord(from: chromagram)
         
-        for (chordName, template) in chordTemplates {
-            let score = correlate(chromagram, template)
-            if score > bestScore {
-                bestScore = score
-                bestMatch = chordName
-            }
-        }
-        
-        // Determine confidence
-        let confidence = min(bestScore / 3.0, 1.0)
-        
-        if confidence < 0.3 {
+        // Return no chord if nothing detected
+        guard let detectedTemplate = template else {
             return ChordResult.noChord
         }
         
-        // Parse chord info
-        let isMinor = bestMatch.contains("m")
-        let root = bestMatch.replacingOccurrences(of: "m", with: "")
-        let quality = isMinor ? "minor" : "major"
+        // Parse chord information
+        let chordName = detectedTemplate.name
+        let rootNote = extractRoot(from: chordName)
+        let quality = detectedTemplate.quality.rawValue
         
         return ChordResult(
             chord: nil,
-            chordName: bestMatch,
+            chordName: chordName,
             confidence: confidence,
             timestamp: Date(),
-            rootNote: root,
+            rootNote: rootNote,
             quality: quality
         )
     }
     
     func reset() {
-        // No state to reset
+        cqtProcessor.reset()
+        chordRecogniser.reset()
     }
     
-    // MARK: - Private Methods
+    // MARK: - Helper Methods
     
-    private func computeChromagram(from fftData: [Float], sampleRate: Float) -> [Float] {
-        var chroma = [Float](repeating: 0.0, count: 12)
-        let binCount = fftData.count
-        
-        for bin in 1..<binCount/2 {
-            let frequency = Float(bin) * sampleRate / Float(binCount)
-            
-            if frequency < 80.0 { continue }
-            if frequency > 4000.0 { break }
-            
-            let pitchClass = frequencyToPitchClass(frequency)
-            chroma[pitchClass] += fftData[bin]
-        }
-        
-        // Normalize
-        let maxValue = chroma.max() ?? 1.0
-        if maxValue > 0 {
-            for i in 0..<12 {
-                chroma[i] /= maxValue
-            }
-        }
-        
-        return chroma
+    /// Extract root note from chord name
+    private func extractRoot(from chordName: String) -> String {
+        // Remove quality indicators to get root
+        return chordName.replacingOccurrences(of: "m", with: "")
+                       .replacingOccurrences(of: "7", with: "")
+                       .replacingOccurrences(of: "maj", with: "")
+                       .replacingOccurrences(of: "°", with: "")
+                       .replacingOccurrences(of: "+", with: "")
+                       .replacingOccurrences(of: "sus2", with: "")
+                       .replacingOccurrences(of: "sus4", with: "")
+                       .replacingOccurrences(of: "ø", with: "")
     }
     
-    private func frequencyToPitchClass(_ frequency: Float) -> Int {
-        let A4: Float = 440.0
-        let C0 = A4 * pow(2.0, -4.75)
-        
-        if frequency <= 0 { return 0 }
-        
-        let semitones = 12.0 * log2(frequency / C0)
-        let pitchClass = Int(semitones.rounded()) % 12
-        
-        return pitchClass >= 0 ? pitchClass : pitchClass + 12
+    // MARK: - Advanced Analysis
+    
+    /// Get detailed analysis of current audio
+    func getDetailedAnalysis() -> ChromagramAnalysis? {
+        let chromagram = cqtProcessor.getChromagram()
+        return chordRecogniser.analyseChromagram(chromagram)
     }
     
-    private func correlate(_ vector1: [Float], _ vector2: [Float]) -> Float {
-        var sum: Float = 0.0
-        for i in 0..<min(vector1.count, vector2.count) {
-            sum += vector1[i] * vector2[i]
-        }
-        return sum
+    /// Get top chord candidates
+    func getTopCandidates(count: Int = 5) -> [(name: String, confidence: Float)] {
+        let chromagram = cqtProcessor.getChromagram()
+        let candidates = chordRecogniser.getTopCandidates(from: chromagram, count: count)
+        
+        return candidates.map { (name: $0.template.name, confidence: $0.score) }
     }
 }
