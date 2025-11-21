@@ -47,6 +47,14 @@ class AnalysisManager: ObservableObject {
                 self.isAnalyzing = false
                 self.analysisStatus = "Analysis complete"
                 
+                // Increment stats
+                let songsAnalysed = UserDefaults.standard.integer(forKey: "songsAnalysed")
+                UserDefaults.standard.set(songsAnalysed + 1, forKey: "songsAnalysed")
+                
+                let uniqueChords = Set(result.detections.map { $0.chordName }).count
+                let currentChords = UserDefaults.standard.integer(forKey: "chordsLearned")
+                UserDefaults.standard.set(max(currentChords, uniqueChords), forKey: "chordsLearned")
+                
                 print("Found \(result.detections.count) chord segments")
                 for detection in result.detections.prefix(5) {
                     print("  \(detection.startTime)s - \(detection.endTime)s: \(detection.chordName) (\(detection.confidence))")

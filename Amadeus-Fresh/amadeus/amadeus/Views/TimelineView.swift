@@ -52,34 +52,50 @@ struct HeaderSection: View {
     var body: some View {
         VStack(spacing: 16) {
             // Current Chord Display (Large)
-            Text(audioManager.currentChord)
-                .font(.system(size: 60, weight: .bold, design: .rounded))
-                .foregroundColor(.blue)
+            VStack(spacing: 8) {
+                Text(audioManager.currentChord)
+                    .font(.system(size: 60, weight: .bold, design: .rounded))
+                    .foregroundColor(.amadeusBlue)
+                    .shadow(color: .amadeusBlue.opacity(0.3), radius: 4, y: 2)
+                
+                Text("Current Chord")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .textCase(.uppercase)
+                    .tracking(1)
+            }
             
             // Key Information
             HStack(spacing: 20) {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 4) {
                     Text("Original Key")
                         .font(.caption)
                         .foregroundColor(.secondary)
+                        .textCase(.uppercase)
+                        .tracking(0.5)
                     Text(audioManager.analysisManager.estimatedKey)
                         .font(.headline)
+                        .fontWeight(.semibold)
                 }
                 
                 if audioManager.pitchShift != 0 {
-                    VStack(alignment: .leading) {
+                    Divider()
+                        .frame(height: 30)
+                    
+                    VStack(alignment: .leading, spacing: 4) {
                         Text("Transposed")
                             .font(.caption)
                             .foregroundColor(.secondary)
+                            .textCase(.uppercase)
+                            .tracking(0.5)
                         Text(audioManager.currentKey)
                             .font(.headline)
-                            .foregroundColor(.blue)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.amadeusBlue)
                     }
                 }
             }
-            .padding()
-            .background(Color.gray.opacity(0.1))
-            .cornerRadius(10)
+            .cardStyle()
         }
         .padding()
     }
@@ -199,47 +215,67 @@ struct ControlsSection: View {
     var body: some View {
         VStack(spacing: 20) {
             // Speed Control
-            VStack(alignment: .leading) {
-                Label("Speed: \(String(format: "%.1fx", audioManager.playbackSpeed))", systemImage: "speedometer")
-                    .font(.headline)
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Image(systemName: "speedometer")
+                        .foregroundColor(.amadeusBlue)
+                        .font(.title3)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Playback Speed")
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                        Text("\(String(format: "%.1fx", audioManager.playbackSpeed)) speed")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    Spacer()
+                }
                 
                 Slider(value: $audioManager.playbackSpeed, in: 0.5...1.5, step: 0.1)
-                    .accentColor(.blue)
+                    .accentColor(.amadeusBlue)
                 
                 HStack {
-                    Text("0.5x").font(.caption2).foregroundColor(.secondary)
+                    Text("0.5x").font(.caption).foregroundColor(.secondary)
                     Spacer()
-                    Text("1.0x").font(.caption2).foregroundColor(.secondary)
+                    Text("1.0x").font(.caption).foregroundColor(.secondary)
                     Spacer()
-                    Text("1.5x").font(.caption2).foregroundColor(.secondary)
+                    Text("1.5x").font(.caption).foregroundColor(.secondary)
                 }
             }
-            .padding()
-            .background(Color.gray.opacity(0.05))
-            .cornerRadius(12)
+            .cardStyle()
             
             // Pitch Control
-            VStack(alignment: .leading) {
-                Label("Transpose: \(audioManager.pitchShift > 0 ? "+" : "")\(audioManager.pitchShift) semitones", systemImage: "music.note")
-                    .font(.headline)
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Image(systemName: "music.note")
+                        .foregroundColor(.amadeusPurple)
+                        .font(.title3)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Transpose")
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                        Text("\(audioManager.pitchShift > 0 ? "+" : "")\(audioManager.pitchShift) semitones")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    Spacer()
+                }
                 
                 Slider(value: Binding(
                     get: { Double(audioManager.pitchShift) },
                     set: { audioManager.pitchShift = Int($0) }
                 ), in: -12...12, step: 1)
-                    .accentColor(.purple)
+                    .accentColor(.amadeusPurple)
                 
                 HStack {
-                    Text("-12").font(.caption2).foregroundColor(.secondary)
+                    Text("-12").font(.caption).foregroundColor(.secondary)
                     Spacer()
-                    Text("0").font(.caption2).foregroundColor(.secondary)
+                    Text("0").font(.caption).foregroundColor(.secondary)
                     Spacer()
-                    Text("+12").font(.caption2).foregroundColor(.secondary)
+                    Text("+12").font(.caption).foregroundColor(.secondary)
                 }
             }
-            .padding()
-            .background(Color.gray.opacity(0.05))
-            .cornerRadius(12)
+            .cardStyle()
         }
         .padding(.horizontal)
     }

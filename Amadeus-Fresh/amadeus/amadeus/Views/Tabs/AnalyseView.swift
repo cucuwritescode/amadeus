@@ -9,7 +9,7 @@ struct AnalyseView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                // Background gradient
+                // background gradient
                 LinearGradient(
                     colors: [Color.blue.opacity(0.05), Color.purple.opacity(0.05)],
                     startPoint: .topLeading,
@@ -18,15 +18,16 @@ struct AnalyseView: View {
                 .ignoresSafeArea()
                 
                 if !audioManager.isFileLoaded {
-                    // Import Screen
+                    // import screen
                     VStack(spacing: 40) {
                         Spacer()
                         
                         // Logo/Title
                         VStack(spacing: 8) {
-                            Image(systemName: "waveform.circle.fill")
-                                .font(.system(size: 80))
-                                .foregroundColor(.blue)
+                            Image("amadeuslogo")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 120, height: 120)
                             
                             Text("Amadeus")
                                 .font(.largeTitle)
@@ -43,33 +44,23 @@ struct AnalyseView: View {
                         VStack(spacing: 16) {
                             // Import Audio Button
                             Button(action: { showFilePicker = true }) {
-                                HStack {
+                                HStack(spacing: 12) {
                                     Image(systemName: "doc.badge.plus")
                                         .font(.title2)
                                     Text("Import Audio File")
-                                        .font(.headline)
                                 }
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 18)
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(12)
                             }
+                            .buttonStyle(PrimaryButtonStyle())
                             
-                            // Record Audio Button
+                            // Record Audio Button  
                             Button(action: { showRecordingView = true }) {
-                                HStack {
+                                HStack(spacing: 12) {
                                     Image(systemName: "mic.circle")
                                         .font(.title2)
                                     Text("Record New")
-                                        .font(.headline)
                                 }
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 18)
-                                .background(Color.gray.opacity(0.2))
-                                .foregroundColor(.primary)
-                                .cornerRadius(12)
                             }
+                            .buttonStyle(SecondaryButtonStyle())
                         }
                         .padding(.horizontal, 40)
                         
@@ -93,7 +84,7 @@ struct AnalyseView: View {
                 }
             }
             .sheet(isPresented: $showRecordingView) {
-                RecordingView()
+                RecordingView(audioManager: audioManager)
             }
             .overlay(
                 // Analysis overlay

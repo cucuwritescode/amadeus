@@ -43,11 +43,6 @@ struct ChordDetailView: View {
                     .frame(height: 150)
                     .padding()
                 
-                // Guitar Chord Diagram
-                GuitarChordView(chordName: chordName)
-                    .frame(height: 200)
-                    .padding()
-                
                 // Intervals
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Intervals")
@@ -116,6 +111,7 @@ struct ChordDetailView: View {
     
     func getHighlightedNotes() -> Set<Int> {
         // Return piano key indices to highlight
+        // These will be corrected with proper music theory later
         switch chordName {
         case "C": return [0, 4, 7]
         case "Am": return [9, 0, 4]
@@ -144,7 +140,7 @@ struct ChordDetailView: View {
     }
 }
 
-// Simple Piano View
+// Simple Piano View (to be corrected with proper music theory)
 struct PianoView: View {
     let highlightedNotes: Set<Int>
     let whiteKeys = 7
@@ -170,48 +166,6 @@ struct PianoView: View {
                         .offset(x: (geometry.size.width / 7) * position)
                 }
             }
-        }
-    }
-}
-
-// Guitar Chord Diagram
-struct GuitarChordView: View {
-    let chordName: String
-    
-    var body: some View {
-        VStack {
-            Text("Guitar Chord")
-                .font(.headline)
-            
-            // Simplified guitar chord diagram
-            Grid(horizontalSpacing: 20, verticalSpacing: 15) {
-                ForEach(0..<6) { string in
-                    GridRow {
-                        ForEach(0..<4) { fret in
-                            Circle()
-                                .stroke(Color.gray)
-                                .frame(width: 20, height: 20)
-                                .overlay(
-                                    Circle()
-                                        .fill(shouldHighlight(string: string, fret: fret) ? Color.blue : Color.clear)
-                                        .frame(width: 16, height: 16)
-                                )
-                        }
-                    }
-                }
-            }
-        }
-        .padding()
-        .background(Color.gray.opacity(0.1))
-        .cornerRadius(12)
-    }
-    
-    func shouldHighlight(string: Int, fret: Int) -> Bool {
-        // Simplified chord positions
-        switch chordName {
-        case "C": return (string == 1 && fret == 0) || (string == 2 && fret == 1) || (string == 4 && fret == 2)
-        case "G": return (string == 0 && fret == 2) || (string == 1 && fret == 3) || (string == 5 && fret == 2)
-        default: return false
         }
     }
 }

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct RecordingView: View {
     @Environment(\.dismiss) var dismiss
+    @ObservedObject var audioManager: AudioManager
     @State private var isRecording = false
     @State private var recordingTime: TimeInterval = 0
     @State private var recordingTimer: Timer?
@@ -59,7 +60,7 @@ struct RecordingView: View {
                     
                     // Save (only if there's a recording)
                     if recordingTime > 0 && !isRecording {
-                        Button("Save & Analyze") {
+                        Button("Save & Analyse") {
                             saveRecording()
                         }
                         .font(.headline)
@@ -104,8 +105,11 @@ struct RecordingView: View {
     }
     
     func saveRecording() {
-        // TODO: Save the recording and trigger analysis
-        print("Saving recording of \(recordingTime) seconds")
+        // Create a simulated URL for the recording
+        // In real implementation, this would be the actual recorded file
+        if let simulatedURL = Bundle.main.url(forResource: "test", withExtension: "mp3") {
+            audioManager.loadFile(simulatedURL)
+        }
         dismiss()
     }
     
@@ -118,5 +122,5 @@ struct RecordingView: View {
 }
 
 #Preview {
-    RecordingView()
+    RecordingView(audioManager: AudioManager())
 }

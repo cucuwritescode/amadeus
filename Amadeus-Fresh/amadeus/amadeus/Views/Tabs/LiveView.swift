@@ -7,6 +7,7 @@ struct LiveView: View {
     @State private var audioLevel: Float = 0.0
     @State private var chordHistory: [String] = []
     @State private var noiseReduction = true
+    @State private var sensitivity: Float = 0.7
     
     // Chord simulation timer
     @State private var chordTimer: Timer?
@@ -129,7 +130,7 @@ struct LiveView: View {
                         HStack {
                             Text("Low")
                                 .font(.caption)
-                            Slider(value: .constant(0.7), in: 0...1)
+                            Slider(value: $sensitivity, in: 0...1)
                             Text("High")
                                 .font(.caption)
                         }

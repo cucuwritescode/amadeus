@@ -10,7 +10,6 @@ struct LibraryView: View {
         ("Diminished", "circle.slash", Color.red),
         ("Augmented", "plus.circle", Color.green),
         ("Suspended", "pause.circle", Color.cyan),
-        ("Add", "plus", Color.indigo),
         ("Altered", "wand.and.stars", Color.pink)
     ]
     
@@ -34,22 +33,27 @@ struct LibraryView: View {
                             .fontWeight(.bold)
                             .padding(.horizontal)
                         
-                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], spacing: 16) {
+                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 120), spacing: 16)], spacing: 16) {
                             ForEach(chordCategories, id: \.0) { category, icon, color in
                                 NavigationLink(destination: ChordCategoryView(category: category)) {
-                                    VStack {
-                                        Image(systemName: icon)
-                                            .font(.largeTitle)
-                                            .foregroundColor(color)
+                                    VStack(spacing: 12) {
+                                        ZStack {
+                                            Circle()
+                                                .fill(color.opacity(0.15))
+                                                .frame(width: 50, height: 50)
+                                            Image(systemName: icon)
+                                                .font(.title2)
+                                                .foregroundColor(color)
+                                        }
                                         Text(category)
-                                            .font(.caption)
+                                            .font(.subheadline)
+                                            .fontWeight(.semibold)
                                             .foregroundColor(.primary)
                                     }
                                     .frame(maxWidth: .infinity)
-                                    .frame(height: 100)
-                                    .background(color.opacity(0.1))
-                                    .cornerRadius(12)
+                                    .padding(.vertical, 20)
                                 }
+                                .cardStyle()
                             }
                         }
                         .padding(.horizontal)

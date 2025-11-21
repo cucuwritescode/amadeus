@@ -1,11 +1,15 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @State private var isDarkMode = false
+    @AppStorage("isDarkMode") private var isDarkMode = false
     @State private var notificationsEnabled = true
-    @State private var hapticFeedback = true
-    @State private var autoAnalysis = true
+    @State private var autoAnalysis = false
     @State private var selectedAudioInput = "Built-in Microphone"
+    
+    // Learning stats (persisted)
+    @AppStorage("songsAnalysed") private var songsAnalysed = 0
+    @AppStorage("chordsLearned") private var chordsLearned = 0
+    @AppStorage("practiceHours") private var practiceHours = 0.0
     
     let audioInputs = ["Built-in Microphone", "External Microphone", "Audio Interface"]
     
@@ -39,7 +43,9 @@ struct ProfileView: View {
                             .foregroundColor(.indigo)
                         Text("Dark Mode")
                         Spacer()
-                        Toggle("", isOn: $isDarkMode)
+                        Text("Coming Soon")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
                     }
                     
                     HStack {
@@ -48,14 +54,6 @@ struct ProfileView: View {
                         Text("Notifications")
                         Spacer()
                         Toggle("", isOn: $notificationsEnabled)
-                    }
-                    
-                    HStack {
-                        Image(systemName: "hand.tap.circle")
-                            .foregroundColor(.purple)
-                        Text("Haptic Feedback")
-                        Spacer()
-                        Toggle("", isOn: $hapticFeedback)
                     }
                 }
                 
@@ -77,7 +75,7 @@ struct ProfileView: View {
                     HStack {
                         Image(systemName: "waveform.circle")
                             .foregroundColor(.blue)
-                        Text("Auto-Analysis")
+                        Text("Auto-Analyse on Import")
                         Spacer()
                         Toggle("", isOn: $autoAnalysis)
                     }
@@ -177,13 +175,18 @@ struct ProfileView: View {
 
 // Placeholder views for navigation
 struct LearningStatsView: View {
+    @AppStorage("songsAnalysed") private var songsAnalysed = 0
+    @AppStorage("chordsLearned") private var chordsLearned = 0
+    @AppStorage("practiceHours") private var practiceHours = 0.0
+    @AppStorage("accuracy") private var accuracy = 0
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                StatCard(title: "Songs Analyzed", value: "24", icon: "music.note")
-                StatCard(title: "Chords Learned", value: "156", icon: "music.note.list")
-                StatCard(title: "Practice Hours", value: "18.5", icon: "clock")
-                StatCard(title: "Accuracy", value: "87%", icon: "target")
+                StatCard(title: "Songs Analysed", value: "\(songsAnalysed)", icon: "music.note")
+                StatCard(title: "Chords Learned", value: "\(chordsLearned)", icon: "music.note.list")
+                StatCard(title: "Practice Hours", value: String(format: "%.1f", practiceHours), icon: "clock")
+                StatCard(title: "Accuracy", value: "\(accuracy)%", icon: "target")
             }
             .padding()
         }
