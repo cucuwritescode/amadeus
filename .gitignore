@@ -1,9 +1,96 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Xcode
+*.xcscmblueprint
+*.xccheckout
+DerivedData/
+.build/
+build/
+*.xcuserstate
+xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+
+# Python Virtual Environments
+venv/
+.venv/
+env/
+.env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Server Dependencies
+basic-pitch-server/venv/
+basic-pitch-server/__pycache__/
+**/node_modules/
+**/package-lock.json
+**/yarn.lock
+
+# Documentation Build Files
+docs/_build/
+docs/venv/
+**/sphinx/
+
+# Reference Repositories (Large external repos)
 references/relevant_repos/aubio/
 references/relevant_repos/Audio-Chord-Recognition/
 references/relevant_repos/chord-detection/
 references/relevant_repos/Chord-Recognition/
 references/relevant_repos/ChordRecGen/
 references/relevant_repos/dechorder/
+references/relevant_repos/omnizart/
+references/relevant_repos/librosa/
+references/relevant_repos/basic-pitch/
+references/relevant_repos/NMFtoolbox/
+references/relevant_repos/sphinx_rtd_theme/
+references/relevant_repos/rt-cqt/
+references/relevant_repos/df0/
+
+# Swift Libraries (External dependencies)
 swift_libs/AudioKit/
 swift_libs/Tonic/
-references/relevant_repos/omnizart/
+
+# Audio Files (test recordings)
+chord_recordings/
+*.mp3
+*.wav
+*.m4a
+*.aac
+*.flac
+*.ogg
+
+# ML Models (large binary files)
+*.mlpackage/
+*.mlmodel
+*.h5
+*.pb
+*.onnx
+
+# PDFs
+*.pdf
+
+# Temporary Files
+temp/
+tmp/
+*.tmp
+*.swp
+*.swo
+*~
+
+# IDE Files
+.vscode/
+.idea/
+*.sublime-*

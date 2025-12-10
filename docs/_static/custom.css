@@ -1,0 +1,355 @@
+/* Amadeus Documentation - Enhanced Design */
+
+/* Import Google Fonts for better typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* Root Variables - Colors inspired by Amadeus branding */
+:root {
+    --amadeus-primary: #2C3E50;     /* Deep blue-grey from logo */
+    --amadeus-secondary: #1B2631;    /* Sophisticated dark navy */
+    --amadeus-accent: #E74C3C;       /* Red accent */
+    --amadeus-gold: #F39C12;         /* Gold for highlights */
+    --amadeus-success: #27AE60;      /* Green for success */
+    --amadeus-warning: #F39C12;      /* Orange for warnings */
+    --amadeus-info: #34495E;         /* Dark blue-grey for info */
+    --amadeus-light-grey: #ECF0F1;   /* Light background */
+    --amadeus-dark-grey: #34495E;    /* Dark text */
+    --amadeus-text: #2C3E50;         /* Main text color */
+}
+
+/* Enhanced Typography */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.7;
+    color: var(--amadeus-text);
+}
+
+/* Headers with better hierarchy */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+h1 { 
+    color: var(--amadeus-primary); 
+    font-size: 2.2em;
+    border-bottom: 3px solid var(--amadeus-secondary);
+    padding-bottom: 0.3em;
+}
+
+h2 { 
+    color: var(--amadeus-primary); 
+    font-size: 1.8em;
+    border-bottom: 2px solid var(--amadeus-light-grey);
+    padding-bottom: 0.3em;
+}
+
+h3 { 
+    color: var(--amadeus-dark-grey); 
+    font-size: 1.4em;
+}
+
+/* Enhanced Code Blocks */
+.highlight pre {
+    background: linear-gradient(145deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 1.2em;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 0.9em;
+    line-height: 1.5;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Inline code styling */
+code {
+    background: var(--amadeus-light-grey);
+    color: var(--amadeus-primary);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9em;
+}
+
+/* Enhanced Navigation */
+.wy-nav-side {
+    background: linear-gradient(180deg, var(--amadeus-secondary) 0%, var(--amadeus-dark-grey) 100%) !important;
+}
+
+/* Override Read the Docs theme blue background */
+html.writer-html5 .wy-nav-side {
+    background: linear-gradient(180deg, var(--amadeus-secondary) 0%, var(--amadeus-dark-grey) 100%) !important;
+}
+
+html.writer-html5 .wy-side-nav-search {
+    background: var(--amadeus-secondary) !important;
+}
+
+.wy-side-nav-search {
+    background: var(--amadeus-secondary) !important;
+    border-bottom: 1px solid var(--amadeus-dark-grey);
+}
+
+/* Force logo area background to match sidebar */
+.wy-side-nav-search, 
+.wy-side-nav-search .wy-dropdown,
+.wy-side-nav-search > div.version {
+    background: var(--amadeus-secondary) !important;
+}
+
+.wy-side-nav-search > div.version {
+    color: var(--amadeus-light-grey);
+}
+
+/* Logo enhancements */
+.wy-side-nav-search .wy-dropdown > a img.logo, 
+.wy-side-nav-search > a img.logo {
+    max-width: 100%;
+    height: auto;
+    padding: 0.5em;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.wy-side-nav-search > a:hover img.logo {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* Navigation links */
+.wy-menu-vertical a {
+    color: #b3b3b3;
+    transition: all 0.3s ease;
+}
+
+.wy-menu-vertical a:hover {
+    background-color: var(--amadeus-gold);
+    color: white;
+}
+
+.wy-menu-vertical li.current a {
+    background-color: var(--amadeus-gold);
+    border-color: var(--amadeus-accent);
+}
+
+/* Enhanced Content Area */
+.wy-nav-content {
+    background: white;
+}
+
+.wy-nav-content-wrap {
+    background: white;
+}
+
+/* Callout Boxes - Admonitions */
+.admonition {
+    border-radius: 8px;
+    padding: 1.2em;
+    margin: 1.5em 0;
+    border-left: 4px solid;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-size: 0.95em;
+}
+
+.admonition.note {
+    background: linear-gradient(145deg, #e3f2fd, #f5f5f5);
+    border-left-color: var(--amadeus-info);
+}
+
+.admonition.warning {
+    background: linear-gradient(145deg, #fff3e0, #f5f5f5);
+    border-left-color: var(--amadeus-warning);
+}
+
+.admonition.tip {
+    background: linear-gradient(145deg, #e8f5e8, #f5f5f5);
+    border-left-color: var(--amadeus-success);
+}
+
+.admonition.important {
+    background: linear-gradient(145deg, #ffebee, #f5f5f5);
+    border-left-color: var(--amadeus-accent);
+}
+
+.admonition-title {
+    font-weight: 600;
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+    color: var(--amadeus-primary);
+}
+
+/* Enhanced Tables */
+.wy-table-responsive table td, 
+.wy-table-responsive table th {
+    border: 1px solid #e1e4e5;
+    padding: 0.8em;
+}
+
+.wy-table-responsive table thead th {
+    background: var(--amadeus-primary);
+    color: white;
+    font-weight: 600;
+}
+
+.wy-table-responsive table tbody tr:nth-child(even) {
+    background: var(--amadeus-light-grey);
+}
+
+/* Badges and Labels */
+.badge {
+    display: inline-block;
+    padding: 0.3em 0.6em;
+    font-size: 0.8em;
+    font-weight: 500;
+    border-radius: 12px;
+    color: white;
+    margin: 0.2em;
+}
+
+.badge.version {
+    background: var(--amadeus-secondary);
+}
+
+.badge.status {
+    background: var(--amadeus-success);
+}
+
+.badge.platform {
+    background: var(--amadeus-primary);
+}
+
+/* Enhanced Lists */
+ul li {
+    margin-bottom: 0.5em;
+}
+
+ul li::marker {
+    color: var(--amadeus-secondary);
+}
+
+/* Improved blockquotes */
+blockquote {
+    border-left: 4px solid var(--amadeus-secondary);
+    background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+    padding: 1em 1.5em;
+    margin: 1.5em 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: var(--amadeus-dark-grey);
+}
+
+/* Progress indicators for step-by-step guides */
+.step-number {
+    display: inline-block;
+    background: var(--amadeus-secondary);
+    color: white;
+    width: 1.8em;
+    height: 1.8em;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1.8em;
+    font-weight: 600;
+    margin-right: 0.5em;
+}
+
+/* Enhanced search */
+.wy-side-nav-search input[type=text] {
+    border: 2px solid var(--amadeus-dark-grey);
+    border-radius: 25px;
+    padding: 0.6em 1em;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.wy-side-nav-search input[type=text]:focus {
+    border-color: var(--amadeus-gold);
+    box-shadow: 0 0 10px rgba(243, 156, 18, 0.3);
+    background: white;
+}
+
+/* Floating table of contents */
+.wy-nav-content {
+    position: relative;
+}
+
+/* Breadcrumbs enhancement */
+.wy-breadcrumbs {
+    margin-bottom: 1.5em;
+    padding: 0.8em;
+    background: var(--amadeus-light-grey);
+    border-radius: 8px;
+}
+
+.wy-breadcrumbs a {
+    color: var(--amadeus-primary);
+    text-decoration: none;
+}
+
+.wy-breadcrumbs a:hover {
+    color: var(--amadeus-gold);
+    text-decoration: underline;
+}
+
+/* Enhanced version badges */
+.version-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--amadeus-gold);
+    color: white;
+    padding: 0.3em 0.8em;
+    border-radius: 0 0 0 8px;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+/* Responsive improvements */
+@media screen and (max-width: 768px) {
+    h1 { font-size: 1.8em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.3em; }
+    
+    .highlight pre {
+        font-size: 0.8em;
+        padding: 1em;
+    }
+    
+    .admonition {
+        padding: 1em;
+        margin: 1em 0;
+    }
+}
+
+/* Smooth transitions for better UX */
+* {
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Focus indicators for accessibility */
+a:focus, 
+button:focus, 
+input:focus {
+    outline: 2px solid var(--amadeus-gold);
+    outline-offset: 2px;
+}
+
+/* Print styles for academic use */
+@media print {
+    .wy-nav-side,
+    .wy-nav-top,
+    .wy-breadcrumbs,
+    .rst-footer-buttons {
+        display: none !important;
+    }
+    
+    .wy-nav-content {
+        margin-left: 0 !important;
+    }
+    
+    h1, h2, h3 {
+        color: black !important;
+    }
+}
