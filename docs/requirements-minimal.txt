@@ -1,0 +1,5 @@
+# Minimal requirements for Sphinx documentation
+sphinx>=6.0.0,<8.0.0
+sphinx-rtd-theme>=1.0.0,<3.0.0
+sphinx-copybutton>=0.5.0
+sphinx-tabs>=3.4.0

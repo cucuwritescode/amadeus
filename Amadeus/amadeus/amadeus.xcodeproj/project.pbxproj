@@ -1,0 +1,643 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		82E95AA32ECFFC4700520824 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 82E95AA22ECFFC4700520824 /* AudioKit */; };
+		82E95AA52ECFFC8700520824 /* Tonic in Frameworks */ = {isa = PBXBuildFile; productRef = 82E95AA42ECFFC8700520824 /* Tonic */; };
+		82E95AB62ED001DD00520824 /* The_Pogues-A Pair_of_Brown_Eyes.wav in Resources */ = {isa = PBXBuildFile; fileRef = 82E95AB52ED001DD00520824 /* The_Pogues-A Pair_of_Brown_Eyes.wav */; };
+		82E95AB72ED001DD00520824 /* Nada-Nahuel_Pennisi_Luis_Salinas.wav in Resources */ = {isa = PBXBuildFile; fileRef = 82E95AB42ED001DD00520824 /* Nada-Nahuel_Pennisi_Luis_Salinas.wav */; };
+		82E95AB82ED001DD00520824 /* 3-Part_Inventions_ (Sinfonias)_No.6_in_E_Major_BWV 792.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82E95AB02ED001DD00520824 /* 3-Part_Inventions_ (Sinfonias)_No.6_in_E_Major_BWV 792.mp3 */; };
+		82E95AB92ED001DD00520824 /* Edie_Brickell-Good_Times.wav in Resources */ = {isa = PBXBuildFile; fileRef = 82E95AB12ED001DD00520824 /* Edie_Brickell-Good_Times.wav */; };
+		82E95ABA2ED001DD00520824 /* Flim.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82E95AB22ED001DD00520824 /* Flim.mp3 */; };
+		82E95ABB2ED001DD00520824 /* Les_Trois_Valses_distinguées_du_précieux_dégoûté_II. Son binocle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82E95AB32ED001DD00520824 /* Les_Trois_Valses_distinguées_du_précieux_dégoûté_II. Son binocle.mp3 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		82491A782EBF029A001A2D13 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 82491A622EBF0299001A2D13 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 82491A692EBF0299001A2D13;
+			remoteInfo = amadeus;
+		};
+		82491A822EBF029A001A2D13 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 82491A622EBF0299001A2D13 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 82491A692EBF0299001A2D13;
+			remoteInfo = amadeus;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		82491A6A2EBF0299001A2D13 /* amadeus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = amadeus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		82491A772EBF029A001A2D13 /* amadeusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = amadeusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		82491A812EBF029A001A2D13 /* amadeusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = amadeusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		82E95AB02ED001DD00520824 /* 3-Part_Inventions_ (Sinfonias)_No.6_in_E_Major_BWV 792.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "3-Part_Inventions_ (Sinfonias)_No.6_in_E_Major_BWV 792.mp3"; sourceTree = "<group>"; };
+		82E95AB12ED001DD00520824 /* Edie_Brickell-Good_Times.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Edie_Brickell-Good_Times.wav"; sourceTree = "<group>"; };
+		82E95AB22ED001DD00520824 /* Flim.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Flim.mp3; sourceTree = "<group>"; };
+		82E95AB32ED001DD00520824 /* Les_Trois_Valses_distinguées_du_précieux_dégoûté_II. Son binocle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Les_Trois_Valses_distinguées_du_précieux_dégoûté_II. Son binocle.mp3"; sourceTree = "<group>"; };
+		82E95AB42ED001DD00520824 /* Nada-Nahuel_Pennisi_Luis_Salinas.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Nada-Nahuel_Pennisi_Luis_Salinas.wav"; sourceTree = "<group>"; };
+		82E95AB52ED001DD00520824 /* The_Pogues-A Pair_of_Brown_Eyes.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "The_Pogues-A Pair_of_Brown_Eyes.wav"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		828DB2212ED797F300F6485D /* Exceptions for "amadeus" folder in "amadeus" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 82491A692EBF0299001A2D13 /* amadeus */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		82491A6C2EBF0299001A2D13 /* amadeus */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				828DB2212ED797F300F6485D /* Exceptions for "amadeus" folder in "amadeus" target */,
+			);
+			path = amadeus;
+			sourceTree = "<group>";
+		};
+		82491A7A2EBF029A001A2D13 /* amadeusTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = amadeusTests;
+			sourceTree = "<group>";
+		};
+		82491A842EBF029A001A2D13 /* amadeusUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = amadeusUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		82491A672EBF0299001A2D13 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82E95AA52ECFFC8700520824 /* Tonic in Frameworks */,
+				82E95AA32ECFFC4700520824 /* AudioKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82491A742EBF029A001A2D13 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82491A7E2EBF029A001A2D13 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		82491A612EBF0299001A2D13 = {
+			isa = PBXGroup;
+			children = (
+				82E95AB02ED001DD00520824 /* 3-Part_Inventions_ (Sinfonias)_No.6_in_E_Major_BWV 792.mp3 */,
+				82E95AB12ED001DD00520824 /* Edie_Brickell-Good_Times.wav */,
+				82E95AB22ED001DD00520824 /* Flim.mp3 */,
+				82E95AB32ED001DD00520824 /* Les_Trois_Valses_distinguées_du_précieux_dégoûté_II. Son binocle.mp3 */,
+				82E95AB42ED001DD00520824 /* Nada-Nahuel_Pennisi_Luis_Salinas.wav */,
+				82E95AB52ED001DD00520824 /* The_Pogues-A Pair_of_Brown_Eyes.wav */,
+				82491A6C2EBF0299001A2D13 /* amadeus */,
+				82491A7A2EBF029A001A2D13 /* amadeusTests */,
+				82491A842EBF029A001A2D13 /* amadeusUITests */,
+				82491A6B2EBF0299001A2D13 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		82491A6B2EBF0299001A2D13 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				82491A6A2EBF0299001A2D13 /* amadeus.app */,
+				82491A772EBF029A001A2D13 /* amadeusTests.xctest */,
+				82491A812EBF029A001A2D13 /* amadeusUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		82491A692EBF0299001A2D13 /* amadeus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82491A8B2EBF029A001A2D13 /* Build configuration list for PBXNativeTarget "amadeus" */;
+			buildPhases = (
+				82491A662EBF0299001A2D13 /* Sources */,
+				82491A672EBF0299001A2D13 /* Frameworks */,
+				82491A682EBF0299001A2D13 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				82491A6C2EBF0299001A2D13 /* amadeus */,
+			);
+			name = amadeus;
+			packageProductDependencies = (
+				82E95AA22ECFFC4700520824 /* AudioKit */,
+				82E95AA42ECFFC8700520824 /* Tonic */,
+			);
+			productName = amadeus;
+			productReference = 82491A6A2EBF0299001A2D13 /* amadeus.app */;
+			productType = "com.apple.product-type.application";
+		};
+		82491A762EBF029A001A2D13 /* amadeusTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82491A8E2EBF029A001A2D13 /* Build configuration list for PBXNativeTarget "amadeusTests" */;
+			buildPhases = (
+				82491A732EBF029A001A2D13 /* Sources */,
+				82491A742EBF029A001A2D13 /* Frameworks */,
+				82491A752EBF029A001A2D13 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				82491A792EBF029A001A2D13 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				82491A7A2EBF029A001A2D13 /* amadeusTests */,
+			);
+			name = amadeusTests;
+			packageProductDependencies = (
+			);
+			productName = amadeusTests;
+			productReference = 82491A772EBF029A001A2D13 /* amadeusTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		82491A802EBF029A001A2D13 /* amadeusUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82491A912EBF029A001A2D13 /* Build configuration list for PBXNativeTarget "amadeusUITests" */;
+			buildPhases = (
+				82491A7D2EBF029A001A2D13 /* Sources */,
+				82491A7E2EBF029A001A2D13 /* Frameworks */,
+				82491A7F2EBF029A001A2D13 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				82491A832EBF029A001A2D13 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				82491A842EBF029A001A2D13 /* amadeusUITests */,
+			);
+			name = amadeusUITests;
+			packageProductDependencies = (
+			);
+			productName = amadeusUITests;
+			productReference = 82491A812EBF029A001A2D13 /* amadeusUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		82491A622EBF0299001A2D13 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					82491A692EBF0299001A2D13 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					82491A762EBF029A001A2D13 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 82491A692EBF0299001A2D13;
+					};
+					82491A802EBF029A001A2D13 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 82491A692EBF0299001A2D13;
+					};
+				};
+			};
+			buildConfigurationList = 82491A652EBF0299001A2D13 /* Build configuration list for PBXProject "amadeus" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 82491A612EBF0299001A2D13;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				82491A942EBF0382001A2D13 /* XCLocalSwiftPackageReference "../../swift_libs/Tonic" */,
+				82491A952EBF038B001A2D13 /* XCLocalSwiftPackageReference "../../swift_libs/AudioKit" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 82491A6B2EBF0299001A2D13 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				82491A692EBF0299001A2D13 /* amadeus */,
+				82491A762EBF029A001A2D13 /* amadeusTests */,
+				82491A802EBF029A001A2D13 /* amadeusUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		82491A682EBF0299001A2D13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82E95AB62ED001DD00520824 /* The_Pogues-A Pair_of_Brown_Eyes.wav in Resources */,
+				82E95AB72ED001DD00520824 /* Nada-Nahuel_Pennisi_Luis_Salinas.wav in Resources */,
+				82E95AB82ED001DD00520824 /* 3-Part_Inventions_ (Sinfonias)_No.6_in_E_Major_BWV 792.mp3 in Resources */,
+				82E95AB92ED001DD00520824 /* Edie_Brickell-Good_Times.wav in Resources */,
+				82E95ABA2ED001DD00520824 /* Flim.mp3 in Resources */,
+				82E95ABB2ED001DD00520824 /* Les_Trois_Valses_distinguées_du_précieux_dégoûté_II. Son binocle.mp3 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82491A752EBF029A001A2D13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82491A7F2EBF029A001A2D13 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		82491A662EBF0299001A2D13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82491A732EBF029A001A2D13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82491A7D2EBF029A001A2D13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		82491A792EBF029A001A2D13 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 82491A692EBF0299001A2D13 /* amadeus */;
+			targetProxy = 82491A782EBF029A001A2D13 /* PBXContainerItemProxy */;
+		};
+		82491A832EBF029A001A2D13 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 82491A692EBF0299001A2D13 /* amadeus */;
+			targetProxy = 82491A822EBF029A001A2D13 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		82491A892EBF029A001A2D13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = XBUUBY6Z76;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		82491A8A2EBF029A001A2D13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = XBUUBY6Z76;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		82491A8C2EBF029A001A2D13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XBUUBY6Z76;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = amadeus/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Amadeus needs access to devices on your local network to communicate with the Basic Pitch analysis server for chord recognition.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "gaucho-dsp.amadeus";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		82491A8D2EBF029A001A2D13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XBUUBY6Z76;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = amadeus/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "Amadeus needs access to devices on your local network to communicate with the Basic Pitch analysis server for chord recognition.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "gaucho-dsp.amadeus";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		82491A8F2EBF029A001A2D13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XBUUBY6Z76;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "gaucho-dsp.amadeusTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/amadeus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/amadeus";
+			};
+			name = Debug;
+		};
+		82491A902EBF029A001A2D13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XBUUBY6Z76;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "gaucho-dsp.amadeusTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/amadeus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/amadeus";
+			};
+			name = Release;
+		};
+		82491A922EBF029A001A2D13 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XBUUBY6Z76;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "gaucho-dsp.amadeusUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = amadeus;
+			};
+			name = Debug;
+		};
+		82491A932EBF029A001A2D13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XBUUBY6Z76;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "gaucho-dsp.amadeusUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = amadeus;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		82491A652EBF0299001A2D13 /* Build configuration list for PBXProject "amadeus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82491A892EBF029A001A2D13 /* Debug */,
+				82491A8A2EBF029A001A2D13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		82491A8B2EBF029A001A2D13 /* Build configuration list for PBXNativeTarget "amadeus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82491A8C2EBF029A001A2D13 /* Debug */,
+				82491A8D2EBF029A001A2D13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		82491A8E2EBF029A001A2D13 /* Build configuration list for PBXNativeTarget "amadeusTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82491A8F2EBF029A001A2D13 /* Debug */,
+				82491A902EBF029A001A2D13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		82491A912EBF029A001A2D13 /* Build configuration list for PBXNativeTarget "amadeusUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82491A922EBF029A001A2D13 /* Debug */,
+				82491A932EBF029A001A2D13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		82491A942EBF0382001A2D13 /* XCLocalSwiftPackageReference "../../swift_libs/Tonic" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../swift_libs/Tonic;
+		};
+		82491A952EBF038B001A2D13 /* XCLocalSwiftPackageReference "../../swift_libs/AudioKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../swift_libs/AudioKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		82E95AA22ECFFC4700520824 /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 82491A952EBF038B001A2D13 /* XCLocalSwiftPackageReference "../../swift_libs/AudioKit" */;
+			productName = AudioKit;
+		};
+		82E95AA42ECFFC8700520824 /* Tonic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 82491A942EBF0382001A2D13 /* XCLocalSwiftPackageReference "../../swift_libs/Tonic" */;
+			productName = Tonic;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 82491A622EBF0299001A2D13 /* Project object */;
+}
