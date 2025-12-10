@@ -1,8 +1,8 @@
 .. Amadeus documentation master file
 
-===========================================
+=====================================================
 Amadeus - Automatic Chord Recognition in iOS
-===========================================
+=====================================================
 
 .. raw:: html
 
@@ -52,31 +52,20 @@ Amadeus - Automatic Chord Recognition in iOS
    :hidden:
 
    ios/structure
-   ios/views
-   ios/managers
-   ios/models
-   ios/networking
 
 .. toctree::
    :maxdepth: 2
    :caption: Python Server
    :hidden:
 
-   server/overview
    server/api
-   server/preprocessing
-   server/analysis
-   server/chord_inference
 
 .. toctree::
    :maxdepth: 2
    :caption: Analysis Pipeline
    :hidden:
 
-   pipeline/overview
    pipeline/chord_detection
-   pipeline/key_estimation
-   pipeline/smoothing
 
 .. toctree::
    :maxdepth: 2
@@ -84,28 +73,6 @@ Amadeus - Automatic Chord Recognition in iOS
    :hidden:
 
    theory/chord_dictionary
-   theory/scale_dictionary
-   theory/progressions
-   theory/circle_of_fifths
-
-.. toctree::
-   :maxdepth: 2
-   :caption: API Reference
-   :hidden:
-
-   api/swift
-   api/python
-   api/json_schemas
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Developer Guide
-   :hidden:
-
-   development/setup
-   development/testing
-   development/contributing
-   development/deployment
 
 .. toctree::
    :maxdepth: 2
@@ -113,20 +80,13 @@ Amadeus - Automatic Chord Recognition in iOS
    :hidden:
 
    future/roadmap
-   future/source_separation
-   future/tempo_estimation
-   future/live_mode
-   future/on_device
 
 .. toctree::
    :maxdepth: 1
    :caption: Appendix
    :hidden:
 
-   limitations
    acknowledgements
-   changelog
-   license
 
 Key Features
 ============
