@@ -15,7 +15,7 @@
 An iOS system for **real-time multiple f₀ estimation**. The application receives audio from the device microphone, performs polyphonic pitch analysis, and presents detected fundamentals and chords in a direct visual interface.
 
 **Key Features:**
-• Real-time chord recognition • Audio file analysis • Music theory library • Chord timeline visualization
+• Real-time chord recognition • Audio file analysis • Music theory library • Chord timeline visualisation
 
 ## 📖 Documentation
 
