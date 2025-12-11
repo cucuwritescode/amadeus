@@ -2,7 +2,7 @@
 //  ProgressionDictionary.swift
 //  amadeus
 //
-//  created by facundo franchino on 10/11/2025.
+//  created by facundo franchino on 23/10/2025.
 //  copyright © 2025 facundo franchino. all rights reserved.
 //
 //  common chord progression patterns and analysis

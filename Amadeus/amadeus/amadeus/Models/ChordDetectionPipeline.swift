@@ -2,7 +2,7 @@
 //  ChordDetectionPipeline.swift
 //  amadeus
 //
-//  created by facundo franchino on 09/11/2025.
+//  created by facundo franchino on 07/11/2025.
 //  copyright © 2025 facundo franchino. all rights reserved.
 //
 //  main pipeline coordinating audio analysis through basic pitch
@@ -137,7 +137,7 @@ class ChordDetectionPipeline {
         guard detections.count > 2 else { return detections }
         
         var smoothedDetections = detections
-        let windowSize = 3
+        let _ = 3 //window size for median filter
         
 // apply median filter with window size 3
         for i in 1..<(detections.count - 1) {

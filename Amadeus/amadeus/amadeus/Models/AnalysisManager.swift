@@ -2,11 +2,11 @@
 //  AnalysisManager.swift
 //  amadeus
 //
-//  created by facundo franchino on 08/11/2025.
+//  created by facundo franchino on 08/09/2025.
 //  copyright © 2025 facundo franchino. all rights reserved.
 //
 //  manages audio analysis pipeline for chord detection and key estimation
-//  coordinates between basic pitch neural network and post-processing
+//  now coordinates between basic pitch NN and post-processing
 //
 //  acknowledgements:
 //  - basic pitch model by rachel bittner et al. (icassp 2022)

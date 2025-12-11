@@ -2,7 +2,7 @@
 //  AppStyles.swift
 //  amadeus
 //
-//  created by facundo franchino on 08/11/2025.
+//  created by facundo franchino on 28/10/2025.
 //  copyright © 2025 facundo franchino. all rights reserved.
 //
 //  centralised styling and theming for consistent ui

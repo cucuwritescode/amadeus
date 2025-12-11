@@ -2,7 +2,7 @@
 //  amadeusApp.swift
 //  amadeus
 //
-//  created by facundo franchino on 08/11/2025.
+//  created by facundo franchino on 04/08/2025.
 //  copyright © 2025 facundo franchino. all rights reserved.
 //
 //  main entry point for the amadeus chord recognition app
@@ -22,7 +22,7 @@ struct amadeusApp: App {
     
     init() {
         //initialise basic pitch configuration with default server settings
-        //this resets any cached server urls to ensure proper connection
+        //this resets any cached server urls to guarantee proper connection
         BasicPitchConfig.resetToDefaults()
     }
     

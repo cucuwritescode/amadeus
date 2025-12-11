@@ -2,7 +2,7 @@
 //  ChordDictionary.swift
 //  amadeus
 //
-//  created by facundo franchino on 08/11/2025.
+//  created by facundo franchino on 14/10/2025.
 //  copyright © 2025 facundo franchino. all rights reserved.
 //
 //  comprehensive chord dictionary with voicings and music theory

@@ -170,14 +170,14 @@ struct AnalyseView: View {
                     buttonsOpacity = 1.0
                 }
             }
-            .onChange(of: audioManager.showAnalysisLoading) { isLoading in
+            .onChange(of: audioManager.showAnalysisLoading) { _, isLoading in
                 if isLoading {
                     //reset timeline animation when analysis starts
                     timelineOpacity = 0
                     timelineOffset = 50
                 }
             }
-            .onChange(of: audioManager.isFileLoaded) { isLoaded in
+            .onChange(of: audioManager.isFileLoaded) { _, isLoaded in
                 if !isLoaded {
                     //cleanup analysis state when file is unloaded
                     audioManager.analysisManager.reset()

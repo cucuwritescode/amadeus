@@ -2,7 +2,7 @@
 //  ChordAssembler.swift
 //  amadeus
 //
-//  created by facundo franchino on 09/11/2025.
+//  created by facundo franchino on 4/10/2025.
 //  copyright © 2025 facundo franchino. all rights reserved.
 //
 //  assembles detected notes into chord symbols

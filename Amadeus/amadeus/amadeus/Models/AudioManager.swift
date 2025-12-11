@@ -2,7 +2,7 @@
 //  AudioManager.swift
 //  amadeus
 //
-//  created by facundo franchino on 08/11/2025.
+//  created by facundo franchino on 10/09/2025.
 //  copyright © 2025 facundo franchino. all rights reserved.
 //
 //  audio playback manager with transport controls and timeline navigation
@@ -157,8 +157,8 @@ class AudioManager: ObservableObject {
                     self.showAnalysisComplete = true
                     
 // auto-hide completion after a moment
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                        self.showAnalysisComplete = false
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in
+                        self?.showAnalysisComplete = false
                     }
                     
                     print("Analysis complete. Ready for playback.")

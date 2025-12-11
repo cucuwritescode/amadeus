@@ -2,7 +2,7 @@
 //  ScaleDictionary.swift
 //  amadeus
 //
-//  created by facundo franchino on 10/11/2025.
+//  created by facundo franchino on 01/10/2025.
 //  copyright © 2025 facundo franchino. all rights reserved.
 //
 //  comprehensive scale dictionary with intervals and modes
