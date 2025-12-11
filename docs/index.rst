@@ -87,6 +87,7 @@ Amadeus - Automatic Chord Recognition in iOS
    :hidden:
 
    acknowledgements
+   references
 
 Key Features
 ============
@@ -98,7 +99,7 @@ User Features
 * **Chord Timeline**: Visual timeline with chord progressions, smoothing, and confidence metrics
 * **Key Estimation**: Automatic detection of musical key and mode
 * **Transposition**: Transform detected chords to different keys
-* **Music Theory Library**: Comprehensive chord types, scales, progressions, and circle of fifths
+* **Music Theory Library**: Comprehensive chord types, scales, and progressions
 * **Export Options**: Share analysis results and export to MIDI (planned)
 
 Technical Features
