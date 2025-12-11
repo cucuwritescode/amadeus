@@ -1,3 +1,18 @@
+//
+//  ChordAssembler.swift
+//  amadeus
+//
+//  created by facundo franchino on 09/11/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  assembles detected notes into chord symbols
+//  implements chord recognition from pitch class sets
+//
+//  acknowledgements:
+//  - chord identification algorithms inspired by tonic library
+//  
+//
+
 import Foundation
 import Tonic
 //created by Facundo Franchino

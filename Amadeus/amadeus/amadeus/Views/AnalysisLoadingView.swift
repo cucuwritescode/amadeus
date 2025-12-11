@@ -1,3 +1,18 @@
+//
+//  AnalysisLoadingView.swift
+//  amadeus
+//
+//  created by facundo franchino on 10/11/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  animated loading view shown during audio analysis
+//  displays orbiting dots animation with progress feedback
+//
+//  acknowledgements:
+//  - animation pattern inspired by appleloginanimation repository
+//  - orbital motion implementation based on swiftui animation patterns
+//
+
 import SwiftUI
 
 struct AnalysisLoadingView: View {

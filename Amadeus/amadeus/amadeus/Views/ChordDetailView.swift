@@ -4,7 +4,7 @@ struct ChordDetailView: View {
     let chordName: String
     let chordType: String
     
-    // Legacy view - keeping for backward compatibility
+    // Legacy view, keeping for backward compatibility
     var intervals: [String] {
         switch chordType {
         case "Major": return ["Root", "Major 3rd", "Perfect 5th"]
@@ -368,11 +368,11 @@ struct EnhancedPianoView: View {
     // White keys:   0        1  2   3     4     5     6
     // Black keys need to be between the correct white key pairs
     private let blackKeyPositions: [CGFloat] = [
-        0.85,  // C# - between C(0) and D(1) 
-        1.85,  // D# - between D(1) and E(2)
-        3.85,  // F# - between F(3) and G(4)  
-        4.85,  // G# - between G(4) and A(5)
-        5.85   // A# - between A(5) and B(6)
+        0.85,  // C#,between C(0) and D(1)
+        1.85,  // D#,between D(1) and E(2)
+        3.85,  // F#, between F(3) and G(4)
+        4.85,  // G# , between G(4) and A(5)
+        5.85   // A# ,between A(5) and B(6)
     ]
     
     var body: some View {
@@ -402,7 +402,7 @@ struct EnhancedPianoView: View {
                     }
                 }
                 
-                // Black keys - positioned BETWEEN white keys
+                // Black keys, positioned BETWEEN white keys
                 ForEach(Array(blackKeyNotes.enumerated()), id: \.offset) { index, noteValue in
                     let position = blackKeyPositions[index]
                     // Position is the exact point between two white keys

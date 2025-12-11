@@ -1,3 +1,18 @@
+//
+//  ChordDetectionPipeline.swift
+//  amadeus
+//
+//  created by facundo franchino on 09/11/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  main pipeline coordinating audio analysis through basic pitch
+//  manages the flow from audio input to chord detection output
+//
+//  acknowledgements:
+//  - basic pitch neural network by rachel bittner et al. (icassp 2022)
+//  - audiokit framework for audio file handling 
+//
+
 import Foundation
 import AVFoundation
 import Accelerate

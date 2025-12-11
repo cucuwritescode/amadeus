@@ -1,3 +1,18 @@
+//
+//  AnalysisCompletionView.swift
+//  amadeus
+//
+//  created by facundo franchino on 10/11/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  success animation shown after analysis completion
+//  displays checkmark with scaling animation and text transitions
+//
+//  acknowledgements:
+//  - animation timing inspired by fuseapponboarding patterns
+//  - success state animations based on ios design guidelines
+//
+
 import SwiftUI
 
 struct AnalysisCompletionView: View {

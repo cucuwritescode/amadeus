@@ -9,12 +9,6 @@
 /* Begin PBXBuildFile section */
 		82E95AA32ECFFC4700520824 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 82E95AA22ECFFC4700520824 /* AudioKit */; };
 		82E95AA52ECFFC8700520824 /* Tonic in Frameworks */ = {isa = PBXBuildFile; productRef = 82E95AA42ECFFC8700520824 /* Tonic */; };
-		82E95AB62ED001DD00520824 /* The_Pogues-A Pair_of_Brown_Eyes.wav in Resources */ = {isa = PBXBuildFile; fileRef = 82E95AB52ED001DD00520824 /* The_Pogues-A Pair_of_Brown_Eyes.wav */; };
-		82E95AB72ED001DD00520824 /* Nada-Nahuel_Pennisi_Luis_Salinas.wav in Resources */ = {isa = PBXBuildFile; fileRef = 82E95AB42ED001DD00520824 /* Nada-Nahuel_Pennisi_Luis_Salinas.wav */; };
-		82E95AB82ED001DD00520824 /* 3-Part_Inventions_ (Sinfonias)_No.6_in_E_Major_BWV 792.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82E95AB02ED001DD00520824 /* 3-Part_Inventions_ (Sinfonias)_No.6_in_E_Major_BWV 792.mp3 */; };
-		82E95AB92ED001DD00520824 /* Edie_Brickell-Good_Times.wav in Resources */ = {isa = PBXBuildFile; fileRef = 82E95AB12ED001DD00520824 /* Edie_Brickell-Good_Times.wav */; };
-		82E95ABA2ED001DD00520824 /* Flim.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82E95AB22ED001DD00520824 /* Flim.mp3 */; };
-		82E95ABB2ED001DD00520824 /* Les_Trois_Valses_distinguées_du_précieux_dégoûté_II. Son binocle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82E95AB32ED001DD00520824 /* Les_Trois_Valses_distinguées_du_précieux_dégoûté_II. Son binocle.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,12 +32,6 @@
 		82491A6A2EBF0299001A2D13 /* amadeus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = amadeus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82491A772EBF029A001A2D13 /* amadeusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = amadeusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82491A812EBF029A001A2D13 /* amadeusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = amadeusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		82E95AB02ED001DD00520824 /* 3-Part_Inventions_ (Sinfonias)_No.6_in_E_Major_BWV 792.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "3-Part_Inventions_ (Sinfonias)_No.6_in_E_Major_BWV 792.mp3"; sourceTree = "<group>"; };
-		82E95AB12ED001DD00520824 /* Edie_Brickell-Good_Times.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Edie_Brickell-Good_Times.wav"; sourceTree = "<group>"; };
-		82E95AB22ED001DD00520824 /* Flim.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Flim.mp3; sourceTree = "<group>"; };
-		82E95AB32ED001DD00520824 /* Les_Trois_Valses_distinguées_du_précieux_dégoûté_II. Son binocle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Les_Trois_Valses_distinguées_du_précieux_dégoûté_II. Son binocle.mp3"; sourceTree = "<group>"; };
-		82E95AB42ED001DD00520824 /* Nada-Nahuel_Pennisi_Luis_Salinas.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Nada-Nahuel_Pennisi_Luis_Salinas.wav"; sourceTree = "<group>"; };
-		82E95AB52ED001DD00520824 /* The_Pogues-A Pair_of_Brown_Eyes.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "The_Pogues-A Pair_of_Brown_Eyes.wav"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -63,16 +51,6 @@
 				828DB2212ED797F300F6485D /* Exceptions for "amadeus" folder in "amadeus" target */,
 			);
 			path = amadeus;
-			sourceTree = "<group>";
-		};
-		82491A7A2EBF029A001A2D13 /* amadeusTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = amadeusTests;
-			sourceTree = "<group>";
-		};
-		82491A842EBF029A001A2D13 /* amadeusUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = amadeusUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -107,15 +85,7 @@
 		82491A612EBF0299001A2D13 = {
 			isa = PBXGroup;
 			children = (
-				82E95AB02ED001DD00520824 /* 3-Part_Inventions_ (Sinfonias)_No.6_in_E_Major_BWV 792.mp3 */,
-				82E95AB12ED001DD00520824 /* Edie_Brickell-Good_Times.wav */,
-				82E95AB22ED001DD00520824 /* Flim.mp3 */,
-				82E95AB32ED001DD00520824 /* Les_Trois_Valses_distinguées_du_précieux_dégoûté_II. Son binocle.mp3 */,
-				82E95AB42ED001DD00520824 /* Nada-Nahuel_Pennisi_Luis_Salinas.wav */,
-				82E95AB52ED001DD00520824 /* The_Pogues-A Pair_of_Brown_Eyes.wav */,
 				82491A6C2EBF0299001A2D13 /* amadeus */,
-				82491A7A2EBF029A001A2D13 /* amadeusTests */,
-				82491A842EBF029A001A2D13 /* amadeusUITests */,
 				82491A6B2EBF0299001A2D13 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -170,9 +140,6 @@
 			dependencies = (
 				82491A792EBF029A001A2D13 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				82491A7A2EBF029A001A2D13 /* amadeusTests */,
-			);
 			name = amadeusTests;
 			packageProductDependencies = (
 			);
@@ -192,9 +159,6 @@
 			);
 			dependencies = (
 				82491A832EBF029A001A2D13 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				82491A842EBF029A001A2D13 /* amadeusUITests */,
 			);
 			name = amadeusUITests;
 			packageProductDependencies = (
@@ -256,12 +220,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82E95AB62ED001DD00520824 /* The_Pogues-A Pair_of_Brown_Eyes.wav in Resources */,
-				82E95AB72ED001DD00520824 /* Nada-Nahuel_Pennisi_Luis_Salinas.wav in Resources */,
-				82E95AB82ED001DD00520824 /* 3-Part_Inventions_ (Sinfonias)_No.6_in_E_Major_BWV 792.mp3 in Resources */,
-				82E95AB92ED001DD00520824 /* Edie_Brickell-Good_Times.wav in Resources */,
-				82E95ABA2ED001DD00520824 /* Flim.mp3 in Resources */,
-				82E95ABB2ED001DD00520824 /* Les_Trois_Valses_distinguées_du_précieux_dégoûté_II. Son binocle.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

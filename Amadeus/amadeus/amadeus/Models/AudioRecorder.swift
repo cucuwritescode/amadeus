@@ -1,3 +1,18 @@
+//
+//  AudioRecorder.swift
+//  amadeus
+//
+//  created by facundo franchino on 11/11/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  audio recording manager for live chord detection
+//  handles 30-second wav recording at 44.1khz mono
+//
+//  acknowledgements:
+//  - avaudiorecorder patterns from apple documentation
+//  - wav format specifications from audio engineering standards
+//
+
 import Foundation
 import AVFoundation
 //created by Facundo Franchino

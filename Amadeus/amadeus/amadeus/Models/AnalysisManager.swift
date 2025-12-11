@@ -1,8 +1,23 @@
+//
+//  AnalysisManager.swift
+//  amadeus
+//
+//  created by facundo franchino on 08/11/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  manages audio analysis pipeline for chord detection and key estimation
+//  coordinates between basic pitch neural network and post-processing
+//
+//  acknowledgements:
+//  - basic pitch model by rachel bittner et al. (icassp 2022)
+//  - krumhansl-schmuckler key-finding algorithm (cognitive foundations of musical pitch, 1990)
+//
+
 import Foundation
 import AVFoundation
 import AudioKit
 
-// manages audio analysis for chord detection and key estimation
+//manages audio analysis for chord detection and key estimation
 class AnalysisManager: ObservableObject {
 //analysis state tracking
     @Published var isAnalyzing = false

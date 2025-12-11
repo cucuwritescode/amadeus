@@ -1,3 +1,18 @@
+//
+//  BasicPitchAnalyzer.swift
+//  amadeus
+//
+//  created by facundo franchino on 09/11/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  interface to basic pitch neural network for note detection
+//  handles model inference and post-processing of predictions
+//
+//  acknowledgements:
+//  - basic pitch model by rachel bittner et al. (icassp 2022)
+//  - coreml integration patterns from apple developer documentation
+//
+
 import Foundation
 import AVFoundation
 import CoreML

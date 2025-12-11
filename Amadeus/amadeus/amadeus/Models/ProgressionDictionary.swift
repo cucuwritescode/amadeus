@@ -1,3 +1,18 @@
+//
+//  ProgressionDictionary.swift
+//  amadeus
+//
+//  created by facundo franchino on 10/11/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  common chord progression patterns and analysis
+//  educational resource for understanding harmonic movement
+//
+//  acknowledgements:
+//  - progression theory from berklee college of music resources
+//  - roman numeral analysis based on western classical harmony 
+//
+
 import Foundation
 //created by Facundo Franchino
 //a dictionary of chord progressions for the library page

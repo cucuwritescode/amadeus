@@ -1,58 +1,73 @@
+//
+//  AudioManager.swift
+//  amadeus
+//
+//  created by facundo franchino on 08/11/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  audio playback manager with transport controls and timeline navigation
+//  handles audio file loading, playback control, and time synchronisation
+//
+//  acknowledgements:
+//  - audiokit framework for audio processing (audiokit.io, aurelius prochazka et al.)
+//  - uses avfoundation framework for audio sessions (apple inc.)
+//
+
 import Foundation
 import AudioKit
 import AVFoundation
 
-// manages audio playback, processing and analysis for the application
+//manages audio playback, processing and analysis for the application
 class AudioManager: ObservableObject {
-// audiokit engine for audio processing
+    //audiokit engine for audio processing
     private var engine: AudioEngine
-//audio player instance for file playback
+    //audio player instance for file playback
     private var player: AudioPlayer?
-// variable speed processor for tempo adjustment
+    //variable speed processor for tempo adjustment
     private var variSpeed: VariSpeed?
-// pitch shifting processor for transposition
+    //pitch shifting processor for transposition
     private var timePitch: TimePitch?
     
-//playback state tracking
+    //playback state tracking
     @Published var isPlaying = false
-// indicates whether an audio file is currently loaded
+    //indicates whether an audio file is currently loaded
     @Published var isFileLoaded = false
-// status message for user feedback
+    //status message for user feedback
     @Published var statusMessage = "No file loaded"
-// current chord being played at the current playback position
+    //current chord being played at the current playback position
     @Published var currentChord = "—"
-//original key of the loaded audio file
+    //original key of the loaded audio file
     @Published var originalKey = "C major"
-// current key after pitch transposition
+    //current key after pitch transposition
     @Published var currentKey = "C major"
-//current playback position in seconds
+    //current playback position in seconds
     @Published var currentTime: Double = 0
-// total duration of the loaded audio file
+    //total duration of the loaded audio file
     @Published var duration: Double = 0
-// shows loading indicator during analysis
+    //shows loading indicator during analysis
     @Published var showAnalysisLoading = false
-//shows completion message after analysis
+    //shows completion message after analysis
     @Published var showAnalysisComplete = false
-// playback speed multiplier with automatic update
+    //playback speed multiplier with automatic update
     @Published var playbackSpeed: Float = 1.0 {
         didSet { updateSpeed() }
     }
-// pitch transposition in semitones with automatic update
+    //pitch transposition in semitones with automatic update
     @Published var pitchShift: Int = 0 {
         didSet { updatePitch() }
     }
     
-// manages chord and key analysis
+    //manages chord and key analysis
     let analysisManager = AnalysisManager()
-// timer for tracking playback position
+    //timer for tracking playback position
     private var playbackTimer: Timer?
     
-// initialise audio manager with fresh engine
+    //initialise audio manager with fresh engine
     init() {
         engine = AudioEngine()
     }
     
-// load and prepare an audio file for playback and analysis
+    //load and prepare an audio file for playback and analysis
     func loadFile(_ url: URL) {
         print("Loading audio file: \(url.lastPathComponent)")
         

@@ -1,3 +1,18 @@
+//
+//  RecordingView.swift
+//  amadeus
+//
+//  created by facundo franchino on 11/11/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  recording interface with visual feedback
+//  displays waveform animation and recording controls
+//
+//  acknowledgements:
+//  - waveform animation inspired by voice memos app
+//  - recording ui patterns from ios human interface guidelines
+//
+
 import SwiftUI
 import AVFoundation
 
@@ -13,7 +28,7 @@ struct RecordingView: View {
             VStack(spacing: 40) {
                 Spacer()
                 
-                // Recording Visualization
+                // Recording visuakisation
                 ZStack {
                     // Outer pulse ring
                     Circle()

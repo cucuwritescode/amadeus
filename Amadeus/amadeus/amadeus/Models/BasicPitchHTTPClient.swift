@@ -1,3 +1,18 @@
+//
+//  BasicPitchHTTPClient.swift
+//  amadeus
+//
+//  created by facundo franchino on 09/11/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  http client for server-based basic pitch analysis
+//  sends audio files to python server for advanced chord inference
+//
+//  acknowledgements:
+//  - basic pitch model by rachel bittner et al. (icassp 2022)
+//  - network patterns based on urlsession best practices
+//
+
 import Foundation
 import AVFoundation
 

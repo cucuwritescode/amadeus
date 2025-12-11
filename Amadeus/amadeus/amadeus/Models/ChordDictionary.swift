@@ -1,3 +1,18 @@
+//
+//  ChordDictionary.swift
+//  amadeus
+//
+//  created by facundo franchino on 08/11/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  comprehensive chord dictionary with voicings and music theory
+//  provides chord structures, intervals, and categorisation
+//
+//  acknowledgements:
+//  - inspired by tonic library chord representations
+// 
+//
+
 import Foundation
 //created by Facundo Franchino
 //represents a chord with its symbols and theory information
