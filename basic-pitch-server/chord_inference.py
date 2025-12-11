@@ -14,8 +14,8 @@ stable, musically meaningful chord progressions. It includes:
 7. Expected harmony whitelist filtering
 8. Output stability guarantees
 
-Author: Claude (Amadeus Project)
-Date: December 2024
+Author: Facundo Franchino
+Date: early Nov 2025
 """
 
 import numpy as np
@@ -27,7 +27,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-# MARK: - Data Structures
+#Data Structures
 
 @dataclass
 class NoteEvent:
@@ -63,7 +63,7 @@ class KeyEstimate:
     mode: str   # 'major' or 'minor'
     confidence: float
 
-# MARK: - Configuration
+#Configuration
 
 class ChordInferenceConfig:
     """Configuration for chord inference parameters."""
@@ -88,7 +88,7 @@ class ChordInferenceConfig:
     MIN_CHORD_DURATION = 0.3  # 300ms minimum chord duration
     MERGE_THRESHOLD = 0.4  # Merge chords closer than 400ms
     
-    # Expected harmony (functional chord types to prioritize)
+    # Expected harmony (functional chord types to prioritise)
     FUNCTIONAL_CHORDS = {
         'major', 'minor', 'sus2', 'sus4', 
         '7', 'm7', 'maj7',           # Common 7th chords
@@ -107,7 +107,7 @@ class KeyDetector:
     MINOR_PROFILE = np.array([6.33, 2.68, 3.52, 5.38, 2.60, 3.53, 2.54, 4.75, 3.98, 2.69, 3.34, 3.17])
     
     def __init__(self):
-        # Normalize profiles
+        # Normalise profiles
         self.major_profile = self.MAJOR_PROFILE / np.sum(self.MAJOR_PROFILE)
         self.minor_profile = self.MINOR_PROFILE / np.sum(self.MINOR_PROFILE)
     
@@ -148,7 +148,7 @@ class KeyDetector:
         if np.sum(pc_weights) == 0:
             return KeyEstimate(key_pc=0, mode='major', confidence=0.0)
         
-        # Normalize
+        # Normalise
         pc_weights = pc_weights / np.sum(pc_weights)
         
         logger.debug(f"Pitch class distribution: {pc_weights}")
@@ -195,7 +195,7 @@ class KeyDetector:
             
         return correlation
 
-# MARK: - Pitch Smoothing
+# Pitch Smoothing
 
 class PitchSmoother:
     """Applies temporal median filtering to pitch activity."""
@@ -261,7 +261,7 @@ class ChordWindowSmoother:
     
     def smooth_chord_progression(self, chord_events: List[ChordEvent]) -> List[ChordEvent]:
         """
-        Apply 1-second median filter to remove chord flukes and stabilize progressions.
+        Apply 1-second median filter to remove chord flukes and stabilise progressions.
         
         This fixes issues like I–II–IV–vi → I–II–IV–I by removing random chord changes
         that don't persist for at least 1 second.
@@ -526,7 +526,7 @@ class ChordInferenceEngine:
     
     def _analyze_window(self, notes: List[NoteEvent], start_time: float, end_time: float, 
                        key_estimate: KeyEstimate) -> Optional[ChordEvent]:
-        """Analyze a time window to detect the most likely chord."""
+        """Analyse a time window to detect the most likely chord."""
         if not notes:
             return None
         

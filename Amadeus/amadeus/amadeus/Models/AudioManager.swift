@@ -6,14 +6,14 @@ import AVFoundation
 class AudioManager: ObservableObject {
 // audiokit engine for audio processing
     private var engine: AudioEngine
-// audio player instance for file playback
+//audio player instance for file playback
     private var player: AudioPlayer?
 // variable speed processor for tempo adjustment
     private var variSpeed: VariSpeed?
 // pitch shifting processor for transposition
     private var timePitch: TimePitch?
     
-// playback state tracking
+//playback state tracking
     @Published var isPlaying = false
 // indicates whether an audio file is currently loaded
     @Published var isFileLoaded = false
@@ -21,17 +21,17 @@ class AudioManager: ObservableObject {
     @Published var statusMessage = "No file loaded"
 // current chord being played at the current playback position
     @Published var currentChord = "—"
-// original key of the loaded audio file
+//original key of the loaded audio file
     @Published var originalKey = "C major"
 // current key after pitch transposition
     @Published var currentKey = "C major"
-// current playback position in seconds
+//current playback position in seconds
     @Published var currentTime: Double = 0
 // total duration of the loaded audio file
     @Published var duration: Double = 0
 // shows loading indicator during analysis
     @Published var showAnalysisLoading = false
-// shows completion message after analysis
+//shows completion message after analysis
     @Published var showAnalysisComplete = false
 // playback speed multiplier with automatic update
     @Published var playbackSpeed: Float = 1.0 {
@@ -57,10 +57,10 @@ class AudioManager: ObservableObject {
         print("Loading audio file: \(url.lastPathComponent)")
         
         do {
-// stop current engine and reset completely
+//stop current engine and reset completely
             engine.stop()
             
-// reset audio session to ensure proper volume levels
+//reset audio session to ensure proper volume levels
             do {
                 let audioSession = AVAudioSession.sharedInstance()
                 try audioSession.setCategory(.playback, mode: .default, options: [])
@@ -118,7 +118,7 @@ class AudioManager: ObservableObject {
             try engine.start()
             print("AudioKit engine started")
             
-// get duration
+//get duration
             duration = Double(audioFile.length) / audioFile.fileFormat.sampleRate
             
             isFileLoaded = true
@@ -128,7 +128,7 @@ class AudioManager: ObservableObject {
             pitchShift = 0
             playbackSpeed = 1.0
             
-// show loading animation and start analysis
+//show loading animation and start analysis
             showAnalysisLoading = true
             
             Task {
@@ -186,18 +186,18 @@ class AudioManager: ObservableObject {
         engine.stop()
     }
     
-// seek to specific position in the audio file
+//seek to specific position in the audio file
     func seek(to time: Double) {
         guard let player = player, duration > 0 else { return }
         
         let clampedTime = max(0, min(duration, time))
         print("SEEK: \(currentTime) -> \(clampedTime)")
         
-// completely stop timer
+//completely stop timer
         playbackTimer?.invalidate()
         playbackTimer = nil
         
-// do the actual seek
+//do the actual seek
         player.stop()
         player.seek(time: clampedTime)
         
@@ -226,7 +226,7 @@ class AudioManager: ObservableObject {
         timePitch?.pitch = AUValue(pitchCompensation + Float(pitchShift * 100))
     }
     
-// update pitch transposition
+//update pitch transposition
     private func updatePitch() {
 // apply pitch shift while maintaining speed compensation
         let pitchCompensation = -1200.0 * log2(playbackSpeed)

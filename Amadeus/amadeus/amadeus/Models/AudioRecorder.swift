@@ -1,6 +1,6 @@
 import Foundation
 import AVFoundation
-
+//created by Facundo Franchino
 //  handles audio recording functionality
 class AudioRecorder: NSObject, ObservableObject {
     private var audioRecorder: AVAudioRecorder?
@@ -67,14 +67,14 @@ class AudioRecorder: NSObject, ObservableObject {
             audioRecorder?.delegate = self
             audioRecorder?.prepareToRecord()
             
-            // start recording
+            // start rec
             audioRecorder?.record()
             isRecording = true
             hasRecording = false
             recordingURL = fileURL
             recordingTime = 0
             
-            // start timer to track recording duration
+            // start timer to track rec duration
             recordingTimer?.invalidate()
             recordingTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
                 self?.recordingTime = self?.audioRecorder?.currentTime ?? 0
@@ -92,7 +92,7 @@ class AudioRecorder: NSObject, ObservableObject {
         }
     }
     
-    // stop recording and save file
+    // stop rec and save file
     func stopRecording() {
         audioRecorder?.stop()
         isRecording = false
@@ -110,7 +110,7 @@ class AudioRecorder: NSObject, ObservableObject {
     func deleteRecording() {
         guard let url = recordingURL else { return }
         
-        //stop recording if still active
+        //stop rec if still active
         if isRecording {
             stopRecording()
         }
@@ -127,13 +127,13 @@ class AudioRecorder: NSObject, ObservableObject {
         }
     }
     
-    //reset state for new recording
+    //reset state for new rec
     func resetForNewRecording() {
         if isRecording {
             stopRecording()
         }
         
-        //clean up previous recording
+        //clean up previous rec
         if let url = recordingURL {
             try? FileManager.default.removeItem(at: url)
         }

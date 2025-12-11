@@ -32,13 +32,13 @@ struct NoteEvent {
 struct BasicPitchOutput {
     let onsetProbs: [[Float]]  // [time][pitch]
     let frameProbs: [[Float]]  // [time][pitch]
-    let contourProbs: [[Float]]? // Optional pitch bend data
+    let contourProbs: [[Float]]? //optional pitch bend data
     
     var numTimeFrames: Int { onsetProbs.count }
     var numPitches: Int { onsetProbs.first?.count ?? 0 }
     
     func timeForFrame(_ frame: Int) -> Double {
-        // Using hardcoded values since BasicPitchConfig is in separate file
+        // using hardcoded values since BasicPitchConfig is in separate file
         let hopLength = 255
         let sampleRate = 22050.0
         return Double(frame * hopLength) / sampleRate

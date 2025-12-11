@@ -70,11 +70,13 @@ The server uses FastAPI for high-performance async operations and integrates Spo
 
 **Processing Pipeline**
    1. Audio file reception and validation
-   2. Format conversion and normalisation
-   3. Basic Pitch model inference (compact convolutional architecture)
-   4. Note event extraction (onset time, pitch, duration)
-   5. Chord inference from symbolic note events
-   6. JSON response generation
+   2. Format conversion with 4 fallback methods (librosa, soundfile, ffmpeg, pydub)
+   3. Audio padding to minimum 3 seconds to prevent crashes
+   4. Basic Pitch model inference (compact convolutional architecture)
+   5. Note event extraction (onset time, pitch, duration)
+   6. Advanced chord inference with Krumhansl-Schmuckler key detection
+   7. Temporal median filtering (window size 3) for stability
+   8. JSON response generation with notes, chords, and key
 
 **Core Modules**
    * ``main.py``: FastAPI application and endpoints
@@ -153,10 +155,11 @@ iOS Application
 
 * **Language**: Swift 5.0+
 * **UI Framework**: SwiftUI
-* **Minimum iOS**: 18.0
-* **Audio**: AVFoundation
+* **Minimum iOS**: 17.0+
+* **Audio**: AudioKit 5.6.0, AVFoundation
+* **Music Theory**: Tonic 1.0.6
 * **Networking**: URLSession
-* **ML**: CoreML (future)
+* **ML**: CoreML (implemented with nmp.mlpackage)
 
 Python Server
 -------------
@@ -171,10 +174,12 @@ Python Server
 Communication Protocol
 ----------------------
 
-* **Protocol**: HTTPS
+* **Protocol**: HTTP/HTTPS
+* **Default Server**: http://192.168.1.111:8000
 * **Data Format**: JSON
 * **File Upload**: Multipart form data
-* **Authentication**: Token-based (future)
+* **Authentication**: None (token-based planned)
+* **Analysis Modes**: HTTP Server, CoreML Local, Simulation
 
 Deployment Architecture
 =======================

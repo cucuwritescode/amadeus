@@ -52,7 +52,7 @@ The pipeline uses Spotify's Basic Pitch model, a compact convolutional architect
 Chord Assembly Algorithm
 ========================
 
-Once symbolic events arrive from the server, they are grouped into short time windows for chord analysis:
+Once symbolic events arrive from the server, they are grouped into time windows for chord analysis:
 
 Time Window Clustering
 ----------------------
@@ -61,9 +61,10 @@ Notes are grouped into time windows for chord analysis:
 
 .. code-block:: python
 
-    # Notes are grouped into time windows (approximately 49 short windows)
+    # Notes are grouped into time windows based on temporal proximity
     # Root candidates are tested against pitch class templates
     # Chord types from Dictionary are matched against detected pitch classes
+    # Median filtering with window size 3 is applied for smoothing
 
 Pitch Class Extraction
 ----------------------
@@ -167,7 +168,7 @@ Post-Processing
 Temporal Smoothing
 ------------------
 
-A small smoothing step removes brief fluctuations in chord detection:
+A median filtering step with window size 3 removes brief fluctuations in chord detection:
 
 .. code-block:: python
 
@@ -283,12 +284,13 @@ Track individual voice movements:
 Performance Metrics
 ===================
 
-The chord detection pipeline achieves:
+The chord detection pipeline includes:
 
-* **Accuracy**: ~75% on pop/rock music
-* **Latency**: <2 seconds for 3-minute song
-* **Precision**: 85% for major/minor triads
-* **Recall**: 70% for complex jazz chords
+* **Server Processing**: Advanced chord inference with Krumhansl-Schmuckler key detection
+* **Three Analysis Modes**: HTTP Server (primary), CoreML Local, Simulation
+* **Robust Audio Loading**: Multiple fallback methods to handle various formats
+* **Audio Preprocessing**: Padding and format conversion as needed
+* **Median Filtering**: Window size 3 for chord smoothing
 
 Limitations
 ===========

@@ -5,6 +5,9 @@ Basic Pitch Server for iOS Chord Recognition App
 This server provides a single endpoint to accept audio files and return
 note events using Spotify's Basic Pitch model. The iOS app sends audio
 files via HTTP POST and receives JSON note events for chord assembly.
+
+Author: Facundo Franchino
+Date: early Nov 2025
 """
 
 import os
@@ -105,7 +108,7 @@ async def health_check():
 @app.post("/analyze", response_model=AnalysisResponse)
 async def analyze_audio(file: UploadFile = File(...)):
     """
-    Analyze an audio file and return note events.
+    Analyse an audio file and return note events.
     
     Args:
         file: Audio file (WAV, MP3, M4A, AAC, FLAC, OGG)

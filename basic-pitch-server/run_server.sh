@@ -2,7 +2,8 @@
 
 # Basic Pitch Server Startup Script
 # This script sets up the Python environment and starts the server
-
+#Author: Facundo Franchino
+#Date: early Nov 2025
 set -e
 
 echo "🎵 Starting Basic Pitch Server..."

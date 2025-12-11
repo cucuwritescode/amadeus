@@ -3,37 +3,37 @@ import AVFoundation
 import Accelerate
 import CoreML
 
-/// Raw audio preprocessing for Basic Pitch CoreML model:
-/// AVAudioPCMBuffer → mono 22.05 kHz → 43,844-sample chunks → MLMultiArray[1, 43844, 1]
+///raw audio preprocessing for Basic Pitch CoreML model:
+/// AVAudioPCMBuffer to mono 22.05 kHz to 43,844-sample chunks to MLMultiArray[1, 43844, 1]
 struct BasicPitchPreprocessor {
 
-    // Basic Pitch CoreML model parameters
+    //basic pitch CoreML model parameters
     static let targetSampleRate: Double = 22_050.0
-    static let chunkSampleCount: Int = 43_844  // Exactly what the model expects
+    static let chunkSampleCount: Int = 43_844  //exactly what the model expects
     
     // MARK: - Public entry point
 
-    /// Main function: turn any AVAudioPCMBuffer into raw audio chunks for the CoreML model
+    ///main function: turn any AVAudioPCMBuffer into raw audio chunks for the CoreML model
     /// - Returns: Array of MLMultiArray with shape [1, 43844, 1] ready for model inference
     static func audioBufferToModelInputs(_ buffer: AVAudioPCMBuffer) throws -> [MLMultiArray] {
-        // 1) Convert to mono float array
+        //convert to mono float array
         let mono = try makeMonoFloatSignal(from: buffer)
 
-        // 2) Resample to 22.05 kHz if needed
+        // resample to 22.05 kHz if needed
         let resampled = try resampleIfNeeded(signal: mono,
                                              fromSampleRate: buffer.format.sampleRate,
                                              toSampleRate: targetSampleRate)
 
-        // 3) Create 43,844-sample chunks
+        //create 43,844-sample chunks
         let chunks = createAudioChunks(signal: resampled, chunkSize: chunkSampleCount)
         
-        // 4) Convert each chunk to MLMultiArray[1, 43844, 1]
+        // convert each chunk to MLMultiArray[1, 43844, 1]
         return try chunks.map { chunk in
             try createModelInput(from: chunk)
         }
     }
     
-    /// Creates MLMultiArray from raw audio samples with shape [1, 43844, 1]
+    ///creates MLMultiArray from raw audio samples with shape [1, 43844, 1]
     private static func createModelInput(from samples: [Float]) throws -> MLMultiArray {
         guard samples.count == chunkSampleCount else {
             throw PreprocessError.invalidChunkSize
@@ -46,7 +46,7 @@ struct BasicPitchPreprocessor {
         
         let dataPointer = inputArray.dataPointer.bindMemory(to: Float.self, capacity: chunkSampleCount)
         
-        // Copy normalized samples [-1, 1] into MLMultiArray
+        // copy normalised samples [-1, 1] into MLMultiArray
         for i in 0..<chunkSampleCount {
             dataPointer[i] = samples[i]
         }
@@ -54,7 +54,7 @@ struct BasicPitchPreprocessor {
         return inputArray
     }
     
-    /// Creates fixed-size audio chunks from continuous signal
+    /// creates fixed-size audio chunks from continuous signal
     private static func createAudioChunks(signal: [Float], chunkSize: Int) -> [[Float]] {
         guard !signal.isEmpty else { return [] }
         
@@ -62,14 +62,14 @@ struct BasicPitchPreprocessor {
         let totalSamples = signal.count
         
         if totalSamples <= chunkSize {
-            // Single chunk - pad with zeros if needed
+            // single chunk,pad with zeros if needed
             var chunk = signal
             if chunk.count < chunkSize {
                 chunk.append(contentsOf: Array(repeating: 0.0, count: chunkSize - chunk.count))
             }
             chunks.append(chunk)
         } else {
-            // Multiple chunks - slide window across audio
+            //multiple chunks, slide window across audio
             let numChunks = (totalSamples + chunkSize - 1) / chunkSize
             
             for chunkIndex in 0..<numChunks {
@@ -78,7 +78,7 @@ struct BasicPitchPreprocessor {
                 
                 var chunk = Array(signal[start..<end])
                 
-                // Pad last chunk if necessary
+                //pad last chunk if necessary
                 if chunk.count < chunkSize {
                     chunk.append(contentsOf: Array(repeating: 0.0, count: chunkSize - chunk.count))
                 }
@@ -101,10 +101,10 @@ struct BasicPitchPreprocessor {
         let frameLength = Int(buffer.frameLength)
 
         if channelCount == 1 {
-            // Single channel, just copy
+            //single channel, just copy
             return Array(UnsafeBufferPointer(start: channelData[0], count: frameLength))
         } else {
-            // Average all channels → mono
+            // average all channels to mono
             var mono = [Float](repeating: 0.0, count: frameLength)
             for ch in 0..<channelCount {
                 let channel = channelData[ch]
@@ -122,7 +122,7 @@ struct BasicPitchPreprocessor {
                                          fromSampleRate: Double,
                                          toSampleRate: Double) throws -> [Float] {
         if abs(fromSampleRate - toSampleRate) < 1.0 {
-            // Already ~22.05k
+            // already around 22.05k anyways
             return signal
         }
 
@@ -132,7 +132,7 @@ struct BasicPitchPreprocessor {
 
         var output = [Float](repeating: 0.0, count: outputCount)
 
-        // Use simple linear interpolation for resampling
+        //use simple linear interpolation for resampling
         for i in 0..<outputCount {
             let srcIndex = Double(i) / ratio
             let lowIndex = Int(srcIndex)

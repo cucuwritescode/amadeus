@@ -2,7 +2,7 @@ import Foundation
 import AVFoundation
 import CoreML
 import Accelerate
-
+//created by Facundo Franchino
 // MARK: - Basic Pitch Analyzer
 
 class BasicPitchAnalyzer: ChordAnalyzer {
@@ -39,7 +39,7 @@ class BasicPitchAnalyzer: ChordAnalyzer {
         print("BasicPitchAnalyzer.analyze() called")
         print("  • Buffer: \(audioBuffer.frameLength) frames @ \(sampleRate) Hz")
         
-        // Check if model is available
+        //check if model is available
         guard model != nil else {
             print("Basic Pitch model not available, falling back to simulation")
             print("   Model is nil - check if nmp.mlpackage is in the project")
@@ -49,8 +49,8 @@ class BasicPitchAnalyzer: ChordAnalyzer {
         print("Model is loaded, attempting analysis...")
         
         do {
-            // Step 1: Convert audio to raw sample chunks for CoreML model
-            print("  Step 1: Converting audio to 43,844-sample chunks...")
+            //convert audio to raw sample chunks for CoreML model
+            print("Converting audio to 43,844-sample chunks...")
             let modelInputs = try BasicPitchPreprocessor.audioBufferToModelInputs(audioBuffer)
             print("   Created \(modelInputs.count) audio chunks of 43,844 samples each")
             
@@ -66,11 +66,11 @@ class BasicPitchAnalyzer: ChordAnalyzer {
                     print("   Processing chunk \(chunkIndex + 1)/\(numChunks) (time: \(String(format: "%.1f", timeOffsetSeconds))s)")
                 }
                 
-                // Run Basic Pitch on this raw audio chunk
+                //run Basic Pitch on this raw audio chunk
                 let modelOutput = try await runBasicPitchInference(modelInputs[chunkIndex])
                 let chunkNotes = extractNoteEvents(from: modelOutput)
                 
-                // Adjust note times by chunk offset
+                // Aajust note times by chunk offset
                 let adjustedNotes = chunkNotes.map { note in
                     NoteEvent(
                         onsetTime: note.onsetTime + timeOffsetSeconds,
@@ -89,7 +89,7 @@ class BasicPitchAnalyzer: ChordAnalyzer {
             
             print("   Total: \(allNoteEvents.count) notes from \(numChunks) chunks")
             
-            // Step 3: Convert note events to chord detections
+            //Convert note events to chord detections
             print("  Step 3: Assembling chords...")
             let chordDetections = chordAssembler.assembleChords(from: allNoteEvents)
             print("   Assembled \(chordDetections.count) chord segments")
@@ -184,7 +184,7 @@ class BasicPitchAnalyzer: ChordAnalyzer {
             }
         }
         
-        // Debug: Check actual probability ranges
+        //check actual probability ranges
         if !onsetProbs.isEmpty && !frameProbs.isEmpty {
             let maxOnset = onsetProbs.flatMap { $0 }.max() ?? 0
             let maxFrame = frameProbs.flatMap { $0 }.max() ?? 0
@@ -203,7 +203,7 @@ class BasicPitchAnalyzer: ChordAnalyzer {
 
         switch shape.count {
         case 3:
-            // Expect [batch, time, pitch] = [1, 172, 88]
+            //expect [batch, time, pitch] = [1, 172, 88]
             let batch   = shape[0]
             let time    = shape[1]
             let pitches = shape[2]
@@ -229,7 +229,7 @@ class BasicPitchAnalyzer: ChordAnalyzer {
             return result
 
         case 2:
-            // Fallback: [time, pitch]
+            //fallback: [time, pitch]
             let time    = shape[0]
             let pitches = shape[1]
             let total   = time * pitches
@@ -266,7 +266,7 @@ class BasicPitchAnalyzer: ChordAnalyzer {
         let baseMidiNote = 21 // A0
         print("  📝 Processing \(numPitches) pitch classes starting from MIDI note \(baseMidiNote)")
         
-        // Filter to reasonable pitch range (C2-C7, MIDI 36-96) to avoid harmonics
+        //filter to reasonable pitch range (C2-C7, MIDI 36-96) to avoid harmonics
         // Most music is between MIDI 36-84 (C2-C6)
         let minReasonablePitch = 15  // Start from MIDI 36 (C2) = index 15
         let maxReasonablePitch = 75  // End at MIDI 96 (C7) = index 75
@@ -282,7 +282,7 @@ class BasicPitchAnalyzer: ChordAnalyzer {
             noteEvents.append(contentsOf: noteEventsForPitch)
         }
         
-        // Filter notes by minimum duration
+        // filter notes by minimum duration
         
         // Filter by minimum duration and sort by onset time
         let filteredNotes = noteEvents.filter { 
@@ -311,7 +311,7 @@ class BasicPitchAnalyzer: ChordAnalyzer {
         var noteEvents: [NoteEvent] = []
         var noteStartFrame: Int? = nil
         
-        // Debug: check if we have any values above threshold for this pitch
+        //check if we have any values above threshold for this pitch
         let _ = onsetProbs.max() ?? 0
         let _ = frameProbs.max() ?? 0
         let _ = onsetProbs.filter { $0 > BasicPitchConfig.onsetThreshold }.count
@@ -333,9 +333,9 @@ class BasicPitchAnalyzer: ChordAnalyzer {
             // Continue note while frame activity remains (with tolerance for gaps)
             if let startFrame = noteStartFrame {
                 // More sophisticated note ending logic:
-                // 1. We're past the start frame
-                // 2. Current frame has no activity
-                // 3. Look ahead to see if note truly ended
+                //We're past the start frame
+                // then Current frame has no activity
+                // then look ahead to see if note truly ended
                 
                 var shouldEndNote = false
                 if frameIndex > startFrame && !hasFrame {
@@ -355,7 +355,7 @@ class BasicPitchAnalyzer: ChordAnalyzer {
                             break
                         }
                     }
-                    // End note only if we have 3+ consecutive frames below threshold
+                    // end note only if we have 3+ consecutive frames below threshold
                     shouldEndNote = (gapCount >= 3)
                 }
                 
@@ -399,7 +399,7 @@ class BasicPitchAnalyzer: ChordAnalyzer {
         let startTime = Double(startFrame * BasicPitchConfig.hopLength) / Double(BasicPitchConfig.sampleRate)
         let endTime = Double(endFrame * BasicPitchConfig.hopLength) / Double(BasicPitchConfig.sampleRate)
         
-        // Calculate average confidence over the note duration
+        // Calculate avg conf over the note duration
         let relevantFrameProbs = Array(frameProbs[startFrame...min(endFrame, frameProbs.count - 1)])
         let avgConfidence = relevantFrameProbs.isEmpty ? 0.0 : relevantFrameProbs.reduce(0, +) / Float(relevantFrameProbs.count)
         

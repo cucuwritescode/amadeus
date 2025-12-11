@@ -1,5 +1,5 @@
 import Foundation
-
+//created by Facundo Franchino
 //configuration settings for basic pitch analysis system
 struct BasicPitchConfig {
     
@@ -46,7 +46,7 @@ struct BasicPitchConfig {
     
     // MARK: - server configuration
     
-    static let defaultServerURL = "http://192.168.0.223:8000"
+    static let defaultServerURL = "http://192.168.1.111:8000"
     static let serverTimeout: TimeInterval = 120  //2 minutes
     
     //debug method to reset settings

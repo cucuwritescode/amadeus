@@ -23,14 +23,14 @@ struct AnalysisResult {
 
 // MARK: - analysis pipeline protocol
 
-// protocol for chord analysis implementations
+//protocol for chord analysis implementations
 protocol ChordAnalyzer {
     func analyze(audioBuffer: AVAudioPCMBuffer, sampleRate: Float) async -> [ChordDetection]
 }
 
 // MARK: - main pipeline
 
-// orchestrates the complete chord detection and analysis process
+//orchestrates the complete chord detection and analysis process
 class ChordDetectionPipeline {
     
 // possible errors during analysis
@@ -47,7 +47,7 @@ class ChordDetectionPipeline {
         if let analyzer = analyzer {
             self.analyzer = analyzer
         } else {
-// choose analyser based on configuration
+//choose analyser based on configuration
             switch BasicPitchConfig.defaultMode {
             case .http(let serverURL):
                 self.analyzer = BasicPitchHTTPClient(serverURL: serverURL)
@@ -63,32 +63,32 @@ class ChordDetectionPipeline {
 // main analysis entry point for processing audio files
     func analyzeFile(_ url: URL, progress: ((Float) -> Void)? = nil) async throws -> AnalysisResult {
         
-// step 1: load audio file
+//load audio file
         progress?(0.1)
         let audioFile = try AVAudioFile(forReading: url)
         
-// step 2: extract audio buffer
+// then extract audio buffer
         progress?(0.2)
         guard let buffer = extractAudioBuffer(from: audioFile) else {
             throw AnalysisError.failedToReadFile
         }
         
-// step 3: run basic pitch analysis
+//then run basic pitch analysis
         progress?(0.3)
         let detections = await analyzer.analyze(
             audioBuffer: buffer,
             sampleRate: Float(audioFile.fileFormat.sampleRate)
         )
         
-// step 4: apply chord smoothing
+//apply chord smoothing
         progress?(0.75)
         let smoothedDetections = smoothChords(detections)
         
-// step 5: estimate key from smoothed detections
+//estimate key from smoothed detections
         progress?(0.9)
         let estimatedKey = estimateKey(from: smoothedDetections)
         
-// step 6: package results
+//package results
         progress?(1.0)
         return AnalysisResult(
             detections: smoothedDetections,
@@ -154,11 +154,11 @@ class ChordDetectionPipeline {
         return smoothedDetections
     }
     
-// improved key estimation using chord function analysis
+//improved key estimation using chord function analysis
     private func estimateKey(from detections: [ChordDetection]) -> String {
         guard !detections.isEmpty else { return "Unknown" }
         
-// count pitch class occurrences weighted by chord duration
+//count pitch class occurrences weighted by chord duration
         var pitchClassWeights = [Int: Double]()
         var totalDuration: Double = 0
         
@@ -178,7 +178,7 @@ class ChordDetectionPipeline {
             pitchClassWeights[key]! /= totalDuration
         }
         
-// major and minor key profiles (krumhansl-schmuckler)
+//major and minor key profiles (krumhansl-schmuckler)
         let majorProfile: [Double] = [6.35, 2.23, 3.48, 2.33, 4.38, 4.09, 2.52, 5.19, 2.39, 3.66, 2.29, 2.88]
         let minorProfile: [Double] = [6.33, 2.68, 3.52, 5.38, 2.60, 3.53, 2.54, 4.75, 3.98, 2.69, 3.34, 3.17]
         
@@ -187,9 +187,9 @@ class ChordDetectionPipeline {
         
         let keyNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
         
-// test all 24 keys (12 major + 12 minor)
+//test all 24 keys (12 major + 12 minor)
         for tonic in 0..<12 {
-// test major key
+//test major key
             var majorScore: Double = 0
             for pitchClass in 0..<12 {
                 let profileIndex = (pitchClass - tonic + 12) % 12
@@ -202,7 +202,7 @@ class ChordDetectionPipeline {
                 bestKey = "\(keyNames[tonic]) major"
             }
             
-// test minor key
+//test minor key
             var minorScore: Double = 0
             for pitchClass in 0..<12 {
                 let profileIndex = (pitchClass - tonic + 12) % 12
@@ -222,19 +222,19 @@ class ChordDetectionPipeline {
 
 // MARK: - simulated analyser (for dec 11)
 
-// simulated chord analyser for testing and demonstration
+//simulated chord analyser for testing and demonstration
 class SimulatedChordAnalyzer: ChordAnalyzer {
     
     func analyze(audioBuffer: AVAudioPCMBuffer, sampleRate: Float) async -> [ChordDetection] {
-// simulate processing time
+//simulate processing time
         try? await Task.sleep(nanoseconds: 500_000_000) //0.5 seconds
         
-// generate realistic chord progression based on audio length
+//generate realistic chord progression based on audio length
         let duration = Double(audioBuffer.frameLength) / Double(sampleRate)
         return generateSimulatedProgression(duration: duration)
     }
     
-// generate simulated chord progression for testing
+//generate simulated chord progression for testing
     private func generateSimulatedProgression(duration: Double) -> [ChordDetection] {
         var detections: [ChordDetection] = []
         

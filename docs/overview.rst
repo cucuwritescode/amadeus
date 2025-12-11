@@ -15,8 +15,8 @@ Core Capabilities
 Audio Input Methods
 -------------------
 
-1. **File Upload**: Support for common audio formats (WAV, MP3, M4A, AAC, FLAC, OGG)
-2. **Live Recording**: Record up to 30 seconds of audio directly in the app
+1. **File Upload**: Support for common audio formats (WAV, MP3, M4A, AAC, FLAC)
+2. **Live Recording**: Record audio directly in the app
 
 Analysis Features
 -----------------
@@ -31,7 +31,7 @@ Analysis Features
    Users can play, pause, and seek through the recording. Skip-forwards and skip-backwards controls give fixed 5-second jumps for efficient practice.
 
 **Transposition**
-   Audio and thence chords can be shifted into any key, which helps users practise shapes and progressions in all 12 keys.
+   Independent pitch transposition (±12 semitones) and speed control (0.5x-1.5x) using AudioKit's TimePitch and VariSpeed processors. Chords are automatically transposed to match the audio pitch shift.
 
 Music Theory Library
 --------------------
@@ -74,12 +74,14 @@ Amadeus development began in early August 2025 and this formative version sets o
 
 * ✅ iOS application with SwiftUI interface
 * ✅ Python FastAPI server for audio analysis
+* ✅ Three analysis modes: HTTP Server, CoreML Local, Simulation
 * ✅ Basic Pitch integration for note transcription
-* ✅ Chord detection pipeline with smoothing
-* ✅ Music theory library
-* ✅ Audio playback with timeline navigation
-* ✅ File upload and 30-second recording capability
-* ✅ Transposition functionality
-* ✅ Export options (basic MIDI)
+* ✅ Advanced chord inference with key detection algorithms
+* ✅ Chord detection pipeline with median filtering (window size 3)
+* ✅ Comprehensive music theory library with Tonic integration
+* ✅ Audio playback with AudioKit (speed and pitch control)
+* ✅ File upload and recording capability
+* ✅ Independent transposition and speed control
+* ✅ Export options (text format, MIDI planned)
 
 **Planned Developments (2026):** See :doc:`future/roadmap`

@@ -35,13 +35,13 @@ class BasicPitchHTTPClient: ChordAnalyzer {
         print("  • Buffer: \(audioBuffer.frameLength) frames @ \(sampleRate) Hz")
         
         do {
-            //step 1: convert audio buffer to wav data
-            print("  Step 1: Converting audio buffer to WAV...")
+            //first convert audio buffer to wav data
+            print("Converting audio buffer to WAV...")
             let wavData = try convertAudioBufferToWAV(audioBuffer)
             print("  Created WAV data (\(wavData.count) bytes)")
             
-            //step 2: upload to server and get analysis results
-            print("Step 2: Sending audio to server at \(serverURL)/analyze...")
+            //then upload to server and get analysis results
+            print("Sending audio to server at \(serverURL)/analyze...")
             let analysisResult = try await uploadAudioAndGetAnalysis(wavData)
             print("Received analysis from server:")
             print("   • \(analysisResult.notes.count) notes")
@@ -50,13 +50,13 @@ class BasicPitchHTTPClient: ChordAnalyzer {
                 print("   • Key: \(key.key) \(key.mode) (confidence: \(String(format: "%.2f", key.confidence)))")
             }
             
-            //step 3: use server's chord inference if available, otherwise fall back to local assembly
+            //then use server's chord inference if available, otherwise fall back to local assembly
             let chordDetections: [ChordDetection]
             if !analysisResult.chords.isEmpty {
-                print("  Step 3: Using server's advanced chord inference...")
+                print("Using server's advanced chord inference...")
                 chordDetections = analysisResult.chords
             } else {
-                print("  Step 3: Server chords unavailable, using local assembly...")
+                print("Server chords unavailable, using local assembly...")
                 let noteEvents = analysisResult.notes.map { apiNote in
                     NoteEvent(
                         onsetTime: apiNote.onset,
@@ -95,7 +95,7 @@ class BasicPitchHTTPClient: ChordAnalyzer {
     private func convertAudioBufferToWAV(_ buffer: AVAudioPCMBuffer) throws -> Data {
         print("  Input buffer: \(buffer.format.channelCount) channels, \(buffer.frameLength) frames")
         
-        //create mono format (always single channel for basic pitch)
+        //create mono format cos we always need a single channel for basic pitch
         guard let monoFormat = AVAudioFormat(standardFormatWithSampleRate: buffer.format.sampleRate, channels: 1) else {
             throw HTTPError.audioExportFailed
         }
@@ -133,8 +133,8 @@ class BasicPitchHTTPClient: ChordAnalyzer {
             //write the mono buffer to file - synchronously
             try audioFile.write(from: monoBuffer)
             
-            //critical: force close the file to flush all data to disk
-            //this ensures the wav file is complete before we read it
+            //force close the file to flush all data to disk
+            //this is a safety net to make sure the wav file is complete before we read it
             //avaudiofile doesn't have an explicit close, but we can nil it
             
             //calculate expected file size for validation
@@ -217,7 +217,7 @@ class BasicPitchHTTPClient: ChordAnalyzer {
                 for channel in 0..<channelCount {
                     sum += inputData[channel][frame]
                 }
-                //simple average downmix (could use equal-power, but average is fine for basic pitch)
+                //simple average downmix (could use equal-power, but average seems fine for basic pitch)
                 outputData[0][frame] = sum / Float(channelCount)
             }
         }
@@ -315,8 +315,8 @@ class BasicPitchHTTPClient: ChordAnalyzer {
 //server analysis response structure
 private struct AnalysisResponse: Codable {
     let notes: [APINote]
-    let chords: [APIChord]?  //new: chord information from server
-    let key: APIKeyInfo?      //new: key information from server
+    let chords: [APIChord]?  //chord information from server
+    let key: APIKeyInfo?      //key information from server
 }
 
 //note detection from server

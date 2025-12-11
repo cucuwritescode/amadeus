@@ -20,7 +20,7 @@ class ChordDictionary {
     static let shared = ChordDictionary()
     
     let chords: [ChordDefinition] = [
-        // Basic Triads
+        //triads
         ChordDefinition(
             name: "Major Triad",
             symbols: ["C", "CM", "Cmaj"],
@@ -54,7 +54,7 @@ class ChordDictionary {
             description: "An augmented triad has a raised 5th, giving it a dissonant, unsettled sound that seeks resolution."
         ),
         
-        // Suspended Chords
+        //sus chords
         ChordDefinition(
             name: "Suspended 2nd Chord",
             symbols: ["Csus2"],
@@ -90,7 +90,7 @@ class ChordDictionary {
             description: "A minor triad with a major 6th added. Common in jazz and classical (the iv⁶ chord in minor), it has a somewhat bittersweet sound."
         ),
         
-        // 7th Chords
+        // 7th chords
         ChordDefinition(
             name: "Dominant 7th Chord",
             symbols: ["C7", "Cdom7"],
@@ -140,7 +140,7 @@ class ChordDictionary {
             description: "A minor triad with a major 7th. This uncommon chord produces a haunting, melancholic sound (notably used as iMaj7 in harmonic minor contexts)."
         ),
         
-        // Extended Chords
+        //ext chords
         ChordDefinition(
             name: "Add 2 (Add 9) Chord",
             symbols: ["Cadd2", "Cadd9"],
