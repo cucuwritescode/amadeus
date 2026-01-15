@@ -28,9 +28,9 @@ struct RecordingView: View {
             VStack(spacing: 40) {
                 Spacer()
                 
-                // Recording visuakisation
+                //rec visuakisation
                 ZStack {
-                    // Outer pulse ring
+                    //outer pulse ring
                     Circle()
                         .stroke(Color.red.opacity(0.3), lineWidth: 4)
                         .frame(width: 200, height: 200)
@@ -38,12 +38,12 @@ struct RecordingView: View {
                         .opacity(audioRecorder.isRecording ? 0.5 : 1.0)
                         .animation(.easeInOut(duration: 1.0).repeatForever(autoreverses: true), value: audioRecorder.isRecording)
                     
-                    // Main circle
+                    //main circle
                     Circle()
                         .fill(audioRecorder.isRecording ? Color.red : Color.gray.opacity(0.3))
                         .frame(width: 120, height: 120)
                     
-                    // Microphone icon
+                    // mic icon
                     Image(systemName: audioRecorder.isRecording ? "mic.fill" : "mic")
                         .font(.system(size: 40))
                         .foregroundColor(.white)
@@ -52,17 +52,17 @@ struct RecordingView: View {
                     toggleRecording()
                 }
                 
-                // Recording time
+                //rec time
                 Text(formatTime(audioRecorder.recordingTime))
                     .font(.system(size: 48, weight: .bold, design: .monospaced))
                     .foregroundColor(audioRecorder.isRecording ? .red : .secondary)
                 
-                // Instructions
+                //instructions
                 Text(audioRecorder.isRecording ? "Recording... Tap to stop" : "Tap to start recording")
                     .font(.headline)
                     .foregroundColor(.secondary)
                 
-                // Recording limit notice
+                //rec limit notice
                 if audioRecorder.isRecording {
                     Text("Max duration: 30 seconds")
                         .font(.caption)
@@ -71,9 +71,9 @@ struct RecordingView: View {
                 
                 Spacer()
                 
-                // Control buttons
+                //control buttons
                 HStack(spacing: 40) {
-                    // Cancel/Delete
+                    //cancel/delete
                     Button(audioRecorder.hasRecording ? "Delete" : "Cancel") {
                         if audioRecorder.hasRecording {
                             audioRecorder.deleteRecording()
@@ -83,7 +83,7 @@ struct RecordingView: View {
                     .font(.headline)
                     .foregroundColor(.red)
                     
-                    // Save (only if there's a recording)
+                    //save (only if there's a recording)
                     if audioRecorder.hasRecording && !audioRecorder.isRecording {
                         Button("Save & Analyse") {
                             saveRecording()
@@ -124,7 +124,7 @@ struct RecordingView: View {
         if audioRecorder.isRecording {
             audioRecorder.stopRecording()
         } else {
-            // Check microphone permission before starting
+            //check microphone permission before starting
             if #available(iOS 17.0, *) {
                 AVAudioApplication.requestRecordPermission { granted in
                     DispatchQueue.main.async {
@@ -182,7 +182,7 @@ struct RecordingView: View {
             //copy recording to final location
             try FileManager.default.copyItem(at: recordingURL, to: finalURL)
             
-            //ensure file is readable before loading
+            //make sure file is readable before loading
             guard FileManager.default.fileExists(atPath: finalURL.path) else {
                 print("recorded file doesn't exist at final location")
                 return

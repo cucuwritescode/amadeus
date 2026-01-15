@@ -1,3 +1,18 @@
+//
+//  BasicPitchPreprocessor.swift
+//  amadeus
+//
+//  created by facundo franchino on 07/11/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  audio preprocessing pipeline for basic pitch coreml model
+//  converts audio buffers to mono 22.05khz chunks for inference
+//
+//  acknowledgements:
+//  - basic pitch model architecture by spotify/magenta
+//  - uses apple accelerate framework for dsp operations
+//
+
 import Foundation
 import AVFoundation
 import Accelerate

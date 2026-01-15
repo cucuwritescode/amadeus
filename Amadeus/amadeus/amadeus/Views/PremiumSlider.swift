@@ -1,5 +1,17 @@
+//
+//  PremiumSlider.swift
+//  amadeus
+//
+//  created by facundo franchino on 28/10/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  custom slider component with animated thumb and progress track
+//  provides enhanced visual feedback during user interaction
+//
+
 import SwiftUI
 
+//custom animated slider with visual feedback for speed and pitch controls
 struct PremiumSlider: View {
     @Binding var value: Double
     let range: ClosedRange<Double>
@@ -115,7 +127,7 @@ struct PremiumSlider: View {
                     )
             }
         }
-        .frame(height: 44) // Larger touch target
+        .frame(height: 44) //larger touch target
     }
 }
 

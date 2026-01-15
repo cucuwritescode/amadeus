@@ -1,5 +1,17 @@
+//
+//  ChordCategoryView.swift
+//  amadeus
+//
+//  created by facundo franchino on 18/10/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  displays chords grouped by category (triads, sevenths, extended, etc.)
+//  provides navigation to detailed chord information views
+//
+
 import SwiftUI
 
+//lists all chords within a specific category from the chord dictionary
 struct ChordCategoryView: View {
     let category: String
     private let chordDictionary = ChordDictionary.shared

@@ -1,5 +1,17 @@
+//
+//  RippleEffect.swift
+//  amadeus
+//
+//  created by facundo franchino on 01/11/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  animated ripple effect view modifier for visual feedback
+//  creates expanding circular waves with fading opacity
+//
+
 import SwiftUI
 
+//view modifier adding animated ripple waves to any view
 struct RippleEffect: ViewModifier {
     @State private var animateRipple: Bool = false
     @State private var animateRipple2: Bool = false
@@ -22,11 +34,11 @@ struct RippleEffect: ViewModifier {
                 .animation(.easeOut(duration: 0.8).delay(0.1), value: animateRipple2)
             }
             .onTapGesture {
-                // Reset animations
+                // rst animations
                 animateRipple = false
                 animateRipple2 = false
                 
-                // Trigger ripple effect
+                //trigger ripple effect
                 withAnimation {
                     animateRipple = true
                 }

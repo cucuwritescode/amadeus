@@ -1,6 +1,17 @@
+//
+//  BasicPitchConfig.swift
+//  amadeus
+//
+//  created by facundo franchino on 07/11/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  configuration settings for basic pitch analysis system
+//  manages analysis mode selection (http, coreml, simulation)
+//
+
 import Foundation
-//created by Facundo Franchino
-//configuration settings for basic pitch analysis system
+
+//central configuration for the chord analysis pipeline
 struct BasicPitchConfig {
     
     // MARK: - analysis mode configuration

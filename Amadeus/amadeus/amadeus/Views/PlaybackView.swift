@@ -1,5 +1,17 @@
+//
+//  PlaybackView.swift
+//  amadeus
+//
+//  created by facundo franchino on 14/10/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  transport controls for audio playback (play, pause, stop)
+//  provides standard media player control interface
+//
+
 import SwiftUI
 
+//playback transport controls with play/pause toggle and stop button
 struct PlaybackView: View {
     @ObservedObject var audioManager: AudioManager
     

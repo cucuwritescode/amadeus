@@ -1,5 +1,17 @@
+//
+//  ProgressionDictionaryView.swift
+//  amadeus
+//
+//  created by facundo franchino on 22/10/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  chord progression encyclopedia organised by genre and style
+//  includes common progressions from pop, jazz, blues, and more
+//
+
 import SwiftUI
 
+//browsable chord progression library with genre categories
 struct ProgressionDictionaryView: View {
     @State private var searchText = ""
     private let progressionDictionary = ProgressionDictionary.shared
@@ -341,7 +353,7 @@ struct ProgressionCategoryView: View {
                             .font(.caption)
                             .foregroundColor(.secondary)
                         
-                        // Show some famous songs
+                        //show some famous songs
                         if !progression.songExamples.isEmpty {
                             Text("Examples: \(progression.songExamples.prefix(2).joined(separator: ", "))")
                                 .font(.caption)

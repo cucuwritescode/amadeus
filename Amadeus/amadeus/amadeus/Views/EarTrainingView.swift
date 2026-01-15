@@ -1,5 +1,17 @@
+//
+//  EarTrainingView.swift
+//  amadeus
+//
+//  created by facundo franchino on 25/10/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  placeholder view for upcoming ear training functionality
+//  will include interval recognition and chord identification exercises
+//
+
 import SwiftUI
 
+//ear training module placeholder (future implementation!)
 struct EarTrainingView: View {
     var body: some View {
         VStack(spacing: 20) {

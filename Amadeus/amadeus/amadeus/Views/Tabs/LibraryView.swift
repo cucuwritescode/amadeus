@@ -1,5 +1,17 @@
+//
+//  LibraryView.swift
+//  amadeus
+//
+//  created by facundo franchino on 14/10/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  music theory reference library with chords, scales, and progressions
+//  central hub for exploring music theory concepts with interactive examples
+//
+
 import SwiftUI
 
+//main library tab providing access to chord, scale, and progression dictionaries
 struct LibraryView: View {
     @State private var selectedCategory = "All"
     @State private var searchText = ""

@@ -1,5 +1,17 @@
+//
+//  LiveView.swift
+//  amadeus
+//
+//  created by facundo franchino on 14/10/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  real-time chord detection view with microphone input visualisation
+//  displays live audio levels and detected chords during recording
+//
+
 import SwiftUI
 
+//live recording tab with real-time chord detection and audio visualisation
 struct LiveView: View {
     @State private var isListening = false
     @State private var currentChord = "—"
@@ -18,10 +30,10 @@ struct LiveView: View {
                 
                 Spacer()
                 
-                // Microphone Visualization
+                // Microphone visualisation
                 VStack {
                     ZStack {
-                        // Outer ring - audio level
+                        // outer ring, audio level
                         Circle()
                             .stroke(Color.blue.opacity(0.3), lineWidth: 8)
                             .frame(width: 200, height: 200)
@@ -40,13 +52,13 @@ struct LiveView: View {
                             .frame(width: 120, height: 120)
                             .animation(.easeInOut(duration: 0.2), value: isListening)
                         
-                        // Microphone icon
+                        // mic icon
                         Image(systemName: isListening ? "mic.fill" : "mic.slash.fill")
                             .font(.system(size: 40))
                             .foregroundColor(.white)
                     }
                     
-                    // Status text
+                    // status text
                     Text(isListening ? "Listening..." : "Tap to start listening")
                         .font(.caption)
                         .foregroundColor(.secondary)
@@ -142,7 +154,7 @@ struct LiveView: View {
     func startListening() {
         isListening = true
         
-        // Simulate audio level fluctuations
+        // Simulate audio level fluctuations, lol
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
             if !isListening {
                 timer.invalidate()
@@ -151,14 +163,14 @@ struct LiveView: View {
             audioLevel = Float.random(in: 0.2...0.8)
         }
         
-        // Simulate chord detection
+        //simu chord detection
         chordTimer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { _ in
             if isListening {
                 let newChord = chords.randomElement() ?? "C"
                 currentChord = newChord
                 confidence = Float.random(in: 0.6...0.95)
                 
-                // Add to history
+                //add to history
                 chordHistory.insert(newChord, at: 0)
                 if chordHistory.count > 5 {
                     chordHistory.removeLast()

@@ -1,5 +1,17 @@
+//
+//  ChordDetailView.swift
+//  amadeus
+//
+//  created by facundo franchino on 18/10/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  detailed chord information view with intervals and formula
+//  legacy view maintained for backward compatibility
+//
+
 import SwiftUI
 
+//displays detailed chord information including intervals and formula
 struct ChordDetailView: View {
     let chordName: String
     let chordType: String
@@ -92,7 +104,7 @@ struct ChordDetailView: View {
                 }
                 .padding()
                 
-                // Play Button
+                //play button
                 Button(action: playChord) {
                     Label("Play Chord", systemImage: "play.circle.fill")
                         .font(.headline)
@@ -110,8 +122,8 @@ struct ChordDetailView: View {
     }
     
     func getHighlightedNotes() -> Set<Int> {
-        // Return piano key indices to highlight
-        // These will be corrected with proper music theory later
+        //return piano key indices to highlight
+        //these will be corrected with propa music theory later
         switch chordName {
         case "C": return [0, 4, 7]
         case "Am": return [9, 0, 4]
@@ -135,12 +147,12 @@ struct ChordDetailView: View {
     }
     
     func playChord() {
-        // Placeholder for chord playback
+        //placeholder for chord playback :D
         print("Playing \(chordName)")
     }
 }
 
-// Simple Piano View (to be corrected with proper music theory)
+//simple Piano View
 struct PianoView: View {
     let highlightedNotes: Set<Int>
     let whiteKeys = 7
@@ -170,7 +182,7 @@ struct PianoView: View {
     }
 }
 
-// Enhanced Chord Detail View using the new ChordDefinition
+// improved chord detail view using the new ChordDefinition
 struct EnhancedChordDetailView: View {
     let chord: ChordDefinition
     @State private var selectedRoot: String = "C"
@@ -213,20 +225,20 @@ struct EnhancedChordDetailView: View {
                     .frame(height: 120)
                     .padding(.horizontal)
                 
-                // Chord Information Cards
+                // chird info Cards
                 VStack(spacing: 16) {
-                    // Formula Card
+                    // formula Card
                     InfoCard(title: "Interval Formula", content: chord.formula, icon: "number", color: .blue)
                     
-                    // Example Notes Card
+                    // examples notes Card
                     InfoCard(title: "Notes (in \(selectedRoot))", content: getNotesForRoot(), icon: "music.note", color: .green)
                     
-                    // Alternative Symbols Card
+                    // alt Symbols Card
                     InfoCard(title: "Alternative Symbols", content: getAlternativeSymbols(), icon: "textformat.alt", color: .orange)
                 }
                 .padding(.horizontal)
                 
-                // Description Card
+                //description Card
                 VStack(alignment: .leading, spacing: 12) {
                     HStack {
                         Image(systemName: "info.circle")
@@ -356,14 +368,14 @@ struct InfoCard: View {
     }
 }
 
-// Enhanced Piano View with proper semitone offset visualization
+// improved piano view with proper semitone offset visualisation
 struct EnhancedPianoView: View {
     let highlightedKeys: Set<Int>
     
     private let whiteKeyNotes: [Int] = [0, 2, 4, 5, 7, 9, 11] // C, D, E, F, G, A, B
     private let blackKeyNotes: [Int] = [1, 3, 6, 8, 10] // C#, D#, F#, G#, A#
     
-    // Correct black key positions - positioned BETWEEN white keys
+    //correct black key positions, positioned BETWEEN white keys
     // Piano layout: C C# D D# E | F F# G G# A A# B
     // White keys:   0        1  2   3     4     5     6
     // Black keys need to be between the correct white key pairs
@@ -382,7 +394,7 @@ struct EnhancedPianoView: View {
             let blackKeyHeight = geometry.size.height * 0.65
             
             ZStack(alignment: .topLeading) {
-                // White keys
+                //white keys
                 HStack(spacing: 1) {
                     ForEach(0..<7, id: \.self) { keyIndex in
                         let noteValue = whiteKeyNotes[keyIndex]
@@ -390,7 +402,7 @@ struct EnhancedPianoView: View {
                             .fill(highlightedKeys.contains(noteValue) ? Color.blue.opacity(0.7) : Color.white)
                             .border(Color.gray, width: 1)
                             .overlay(
-                                // Add note labels at the bottom
+                                //add note labels at the bottom
                                 VStack {
                                     Spacer()
                                     Text(getNoteNameForSemitone(noteValue))
@@ -402,10 +414,10 @@ struct EnhancedPianoView: View {
                     }
                 }
                 
-                // Black keys, positioned BETWEEN white keys
+                //black keys, positioned BETWEEN white keys
                 ForEach(Array(blackKeyNotes.enumerated()), id: \.offset) { index, noteValue in
                     let position = blackKeyPositions[index]
-                    // Position is the exact point between two white keys
+                    //position is the exact point between two white keys
                     let xOffset = whiteKeyWidth * position
                     
                     Rectangle()
@@ -413,7 +425,7 @@ struct EnhancedPianoView: View {
                         .frame(width: blackKeyWidth, height: blackKeyHeight)
                         .cornerRadius(4)
                         .overlay(
-                            // Add note labels
+                            //add note labels
                             VStack {
                                 Spacer()
                                 Text(getNoteNameForSemitone(noteValue))

@@ -1,7 +1,19 @@
+//
+//  NoteEvent.swift
+//  amadeus
+//
+//  created by facundo franchino on 07/11/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  data structure representing a detected musical note
+//  stores onset/offset timing, midi pitch, and detection confidence
+//
+
 import Foundation
-//created by Facundo Franchino
+
 // MARK: - Note Event Data Structure
 
+//represents a single detected note with timing and pitch information
 struct NoteEvent {
     let onsetTime: Double
     let offsetTime: Double

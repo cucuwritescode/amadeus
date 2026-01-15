@@ -1,3 +1,17 @@
+//
+//  AnalyseView.swift
+//  amadeus
+//
+//  created by facundo franchino on 07/09/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  main entry point for audio analysis featuring file import and recording
+//  handles analysis workflow with loading states and completion animations
+//
+//  acknowledgements:
+//  - sf symbols by apple inc. for iconography
+//
+
 import SwiftUI
 
 //main analysis view for audio file processing and chord detection

@@ -200,8 +200,8 @@
 			mainGroup = 82491A612EBF0299001A2D13;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				82491A942EBF0382001A2D13 /* XCLocalSwiftPackageReference "../../swift_libs/Tonic" */,
-				82491A952EBF038B001A2D13 /* XCLocalSwiftPackageReference "../../swift_libs/AudioKit" */,
+				82491A942EBF0382001A2D13 /* XCRemoteSwiftPackageReference "Tonic" */,
+				82491A952EBF038B001A2D13 /* XCRemoteSwiftPackageReference "AudioKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 82491A6B2EBF0299001A2D13 /* Products */;
@@ -573,26 +573,34 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		82491A942EBF0382001A2D13 /* XCLocalSwiftPackageReference "../../swift_libs/Tonic" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../../swift_libs/Tonic;
+/* Begin XCRemoteSwiftPackageReference section */
+		82491A942EBF0382001A2D13 /* XCRemoteSwiftPackageReference "Tonic" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/Tonic.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.6;
+			};
 		};
-		82491A952EBF038B001A2D13 /* XCLocalSwiftPackageReference "../../swift_libs/AudioKit" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../../swift_libs/AudioKit;
+		82491A952EBF038B001A2D13 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
 		};
-/* End XCLocalSwiftPackageReference section */
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		82E95AA22ECFFC4700520824 /* AudioKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 82491A952EBF038B001A2D13 /* XCLocalSwiftPackageReference "../../swift_libs/AudioKit" */;
+			package = 82491A952EBF038B001A2D13 /* XCRemoteSwiftPackageReference "AudioKit" */;
 			productName = AudioKit;
 		};
 		82E95AA42ECFFC8700520824 /* Tonic */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 82491A942EBF0382001A2D13 /* XCLocalSwiftPackageReference "../../swift_libs/Tonic" */;
+			package = 82491A942EBF0382001A2D13 /* XCRemoteSwiftPackageReference "Tonic" */;
 			productName = Tonic;
 		};
 /* End XCSwiftPackageProductDependency section */

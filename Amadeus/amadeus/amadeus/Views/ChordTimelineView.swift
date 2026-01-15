@@ -1,5 +1,17 @@
+//
+//  ChordTimelineView.swift
+//  amadeus
+//
+//  created by facundo franchino on 14/10/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  visual timeline displaying detected chords with playhead indicator
+//  shows chord segments, confidence levels, and time markers
+//
+
 import SwiftUI
 
+//displays chord detections as coloured segments on a horizontal timeline
 struct ChordTimelineView: View {
     let detections: [ChordDetection]
     let currentTime: Double
@@ -8,12 +20,12 @@ struct ChordTimelineView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
-                // Background
+                // background
                 Rectangle()
                     .fill(Color.gray.opacity(0.1))
                     .cornerRadius(8)
                 
-                // Chord segments
+                // chord segments
                 ForEach(Array(detections.enumerated()), id: \.offset) { _, detection in
                     ChordSegmentView(
                         detection: detection,
@@ -23,7 +35,7 @@ struct ChordTimelineView: View {
                     )
                 }
                 
-                // Playhead
+                // playhead
                 if duration > 0 {
                     Rectangle()
                         .fill(Color.red)
@@ -31,7 +43,7 @@ struct ChordTimelineView: View {
                         .offset(x: (currentTime / duration) * geometry.size.width)
                 }
                 
-                // Time labels
+                //time labels
                 HStack {
                     Text(formatTime(0))
                         .font(.caption2)
@@ -79,12 +91,12 @@ struct ChordSegmentView: View {
     
     var body: some View {
         VStack(spacing: 2) {
-            // Chord name
+            //chord name
             Text(detection.chordName)
                 .font(.system(size: 14, weight: isActive ? .bold : .medium))
                 .foregroundColor(isActive ? .white : .primary)
             
-            // Confidence bar
+            //confidence bar
             Rectangle()
                 .fill(Color.green.opacity(confidenceOpacity))
                 .frame(height: 3)
@@ -104,7 +116,7 @@ struct ChordSegmentView: View {
     }
 }
 
-// Analysis Progress View
+//analysis progress view
 struct AnalysisProgressView: View {
     let status: String
     let progress: Float

@@ -1,5 +1,17 @@
+//
+//  ScaleDictionaryView.swift
+//  amadeus
+//
+//  created by facundo franchino on 18/10/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  interactive scale encyclopedia with search and categorisation
+//  displays scales by category with visual keyboard representations
+//
+
 import SwiftUI
 
+//browsable scale dictionary organised by category with search
 struct ScaleDictionaryView: View {
     @State private var searchText = ""
     private let scaleDictionary = ScaleDictionary.shared
@@ -162,7 +174,7 @@ struct ScaleRowView: View {
     
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
-            // Scale icon with category color
+            //scale icon with category color
             VStack {
                 Image(systemName: getCategoryIcon())
                     .font(.system(size: 24, weight: .semibold))
@@ -172,7 +184,7 @@ struct ScaleRowView: View {
                     .clipShape(Circle())
             }
             
-            // Scale Information
+            //scale info
             VStack(alignment: .leading, spacing: 4) {
                 Text(scale.name)
                     .font(.headline)
@@ -284,7 +296,7 @@ struct ScaleDetailView: View {
                         .background(Color.secondary.opacity(0.1))
                         .cornerRadius(8)
                     
-                    // Root note selector
+                    //root note selector
                     VStack {
                         Text("Root Note")
                             .font(.caption)
@@ -301,20 +313,20 @@ struct ScaleDetailView: View {
                 }
                 .padding(.horizontal)
                 
-                // Piano Visualization
+                //ppiano visualisation
                 EnhancedPianoView(highlightedKeys: getHighlightedKeysForRoot())
                     .frame(height: 120)
                     .padding(.horizontal)
                 
-                // Scale Information Cards
+                //scale info Cards
                 VStack(spacing: 16) {
-                    // Formula Card
+                    // formula Card
                     ScaleInfoCard(title: "Interval Formula", content: scale.formula, icon: "function", color: .blue)
                     
-                    // Degrees Card
+                    // degrees Card
                     ScaleInfoCard(title: "Scale Degrees", content: scale.degrees, icon: "number", color: .purple)
                     
-                    // Notes in Selected Key
+                    // notes in selected key
                     ScaleInfoCard(title: "Notes in \(selectedRoot)", content: getNotesForRoot(), icon: "music.note", color: .green)
                 }
                 .padding(.horizontal)
@@ -341,7 +353,7 @@ struct ScaleDetailView: View {
                 .cornerRadius(12)
                 .padding(.horizontal)
                 
-                // Play Button
+                // play button
                 Button(action: playScale) {
                     Label("Play \(selectedRoot) \(scale.name)", systemImage: "play.circle.fill")
                         .font(.headline)

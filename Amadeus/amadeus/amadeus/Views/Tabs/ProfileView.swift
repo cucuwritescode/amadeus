@@ -1,5 +1,17 @@
+//
+//  ProfileView.swift
+//  amadeus
+//
+//  created by facundo franchino on 14/10/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  user profile and settings tab with learning statistics
+//  includes app configuration, help resources, and about information
+//
+
 import SwiftUI
 
+//profile tab displaying user stats, settings, and app information
 struct ProfileView: View {
     @AppStorage("isDarkMode") private var isDarkMode = false
     @State private var notificationsEnabled = true
@@ -16,7 +28,7 @@ struct ProfileView: View {
     var body: some View {
         NavigationView {
             List {
-                // Profile Section
+                //profile Section
                 Section {
                     HStack {
                         Image(systemName: "person.circle.fill")
@@ -36,7 +48,7 @@ struct ProfileView: View {
                     .padding(.vertical, 8)
                 }
                 
-                // App Settings
+                //app settings
                 Section("App Settings") {
                     HStack {
                         Image(systemName: "bell.circle")
@@ -47,7 +59,7 @@ struct ProfileView: View {
                     }
                 }
                 
-                // Audio Settings
+                //audio sett
                 Section("Audio Settings") {
                     HStack {
                         Image(systemName: "mic.circle")
@@ -72,7 +84,7 @@ struct ProfileView: View {
                     }
                 }
                 
-                // Learning Settings
+                //learning sett
                 Section("Learning") {
                     NavigationLink(destination: LearningStatsView()) {
                         HStack {
@@ -136,7 +148,7 @@ struct ProfileView: View {
                         Text("1.0.0")
                             .foregroundColor(.secondary)
                     }
-                    
+
                     HStack {
                         Image(systemName: "hammer.circle")
                             .foregroundColor(.orange)
@@ -144,6 +156,14 @@ struct ProfileView: View {
                         Spacer()
                         Text("Dec 2025")
                             .foregroundColor(.secondary)
+                    }
+
+                    NavigationLink(destination: CreditsView()) {
+                        HStack {
+                            Image(systemName: "heart.circle")
+                                .foregroundColor(.pink)
+                            Text("Credits & Acknowledgements")
+                        }
                     }
                 }
                 
@@ -400,7 +420,7 @@ struct AchievementsView: View {
         ("Transposer", "Transpose a song to 5 different keys", false),
         ("Library Explorer", "View 20 chord details", true)
     ]
-    
+
     var body: some View {
         List {
             ForEach(achievements, id: \.0) { name, description, unlocked in
@@ -408,7 +428,7 @@ struct AchievementsView: View {
                     Image(systemName: unlocked ? "star.circle.fill" : "star.circle")
                         .foregroundColor(unlocked ? .yellow : .gray)
                         .font(.title2)
-                    
+
                     VStack(alignment: .leading) {
                         Text(name)
                             .font(.headline)
@@ -417,7 +437,7 @@ struct AchievementsView: View {
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
-                    
+
                     Spacer()
                 }
                 .padding(.vertical, 4)
@@ -425,6 +445,184 @@ struct AchievementsView: View {
         }
         .navigationTitle("Achievements")
     }
+}
+
+//credits and acknowledgements view displaying attributions for frameworks and assets
+struct CreditsView: View {
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 24) {
+                //header
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Credits & Acknowledgements")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+
+                    Text("Amadeus is built with the help of these amazing technologies and resources.")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+
+                Divider()
+
+                //design section
+                CreditSection(
+                    title: "Design",
+                    icon: "paintbrush.fill",
+                    iconColor: .purple,
+                    credits: [
+                        CreditItem(
+                            name: "App Logo & Icon",
+                            description: "Original design by Facundo Franchino"
+                        ),
+                        CreditItem(
+                            name: "SF Symbols",
+                            description: "Iconography by Apple Inc."
+                        )
+                    ]
+                )
+
+                Divider()
+
+                //frameworks section
+                CreditSection(
+                    title: "Frameworks & Libraries",
+                    icon: "shippingbox.fill",
+                    iconColor: .blue,
+                    credits: [
+                        CreditItem(
+                            name: "AudioKit",
+                            description: "Audio synthesis and processing framework by Aurelius Prochazka et al. (audiokit.io)"
+                        ),
+                        CreditItem(
+                            name: "Tonic",
+                            description: "Music theory library for Swift by AudioKit"
+                        ),
+                        CreditItem(
+                            name: "SwiftUI",
+                            description: "User interface framework by Apple Inc."
+                        ),
+                        CreditItem(
+                            name: "AVFoundation",
+                            description: "Audio/video framework by Apple Inc."
+                        ),
+                        CreditItem(
+                            name: "Accelerate",
+                            description: "High-performance DSP framework by Apple Inc."
+                        )
+                    ]
+                )
+
+                Divider()
+
+                //research section
+                CreditSection(
+                    title: "Research & Algorithms",
+                    icon: "brain.head.profile",
+                    iconColor: .green,
+                    credits: [
+                        CreditItem(
+                            name: "Basic Pitch",
+                            description: "Neural network for polyphonic pitch detection by Rachel Bittner et al. (Spotify/Magenta, ICASSP 2022)"
+                        ),
+                        CreditItem(
+                            name: "Krumhansl-Schmuckler Algorithm",
+                            description: "Key detection algorithm based on pitch class profiles"
+                        )
+                    ]
+                )
+
+                Divider()
+
+                //developer section
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        Image(systemName: "person.fill")
+                            .foregroundColor(.orange)
+                            .font(.title2)
+                        Text("Developer")
+                            .font(.headline)
+                    }
+
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Facundo Franchino")
+                            .font(.body)
+                            .fontWeight(.medium)
+                        Text("University of York")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        Text("BEng Electronic Engineering with Music Technology Systems")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(12)
+                }
+
+                Spacer(minLength: 40)
+
+                //footer
+                Text("© 2025 Facundo Franchino. All rights reserved.")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .center)
+            }
+            .padding()
+        }
+        .navigationTitle("Credits")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+//section container for credits
+struct CreditSection: View {
+    let title: String
+    let icon: String
+    let iconColor: Color
+    let credits: [CreditItem]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Image(systemName: icon)
+                    .foregroundColor(iconColor)
+                    .font(.title2)
+                Text(title)
+                    .font(.headline)
+            }
+
+            VStack(spacing: 8) {
+                ForEach(credits, id: \.name) { credit in
+                    HStack(alignment: .top, spacing: 12) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.green)
+                            .font(.caption)
+                            .padding(.top, 2)
+
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(credit.name)
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                            Text(credit.description)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+
+                        Spacer()
+                    }
+                    .padding(.vertical, 4)
+                }
+            }
+        }
+    }
+}
+
+//individual credit item
+struct CreditItem {
+    let name: String
+    let description: String
 }
 
 #Preview {

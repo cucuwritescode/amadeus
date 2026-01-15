@@ -1,6 +1,21 @@
+//
+//  DocumentPicker.swift
+//  amadeus
+//
+//  created by facundo franchino on 10/09/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  file picker wrapper for importing audio files from the device
+//  handles security-scoped resource access and temporary file copying
+//
+//  acknowledgements:
+//  - uses uikit uidocumentpickerviewcontroller (apple inc.)
+//
+
 import SwiftUI
 import UniformTypeIdentifiers
 
+//wraps uidocumentpickerviewcontroller for swiftui integration
 struct DocumentPicker: UIViewControllerRepresentable {
     let onPick: (URL) -> Void
     
@@ -35,7 +50,7 @@ struct DocumentPicker: UIViewControllerRepresentable {
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
             guard let url = urls.first else { return }
             
-            // Start accessing security scoped resource
+            //start accessing security scoped resource
             guard url.startAccessingSecurityScopedResource() else {
                 print("❌ Failed to access security scoped resource")
                 return
@@ -44,24 +59,24 @@ struct DocumentPicker: UIViewControllerRepresentable {
             defer { url.stopAccessingSecurityScopedResource() }
             
             do {
-                // Copy file to temporary location to avoid sandboxing issues
+                //copy file to temporary location to avoid sandboxing issues
                 let tempDir = FileManager.default.temporaryDirectory
                 let tempURL = tempDir.appendingPathComponent(url.lastPathComponent)
                 
-                // Remove existing temp file if it exists
+                //remove existing temp file if it exists
                 try? FileManager.default.removeItem(at: tempURL)
                 
-                // Copy to temp location
+                //copy to temp location
                 try FileManager.default.copyItem(at: url, to: tempURL)
                 
                 print("✅ File copied to temp location: \(tempURL.lastPathComponent)")
                 
-                // Use the temp URL
+                //use the temp URL
                 parent.onPick(tempURL)
                 
             } catch {
                 print("❌ Failed to copy file: \(error.localizedDescription)")
-                // Fall back to original URL
+                //fall back to original URL
                 parent.onPick(url)
             }
         }

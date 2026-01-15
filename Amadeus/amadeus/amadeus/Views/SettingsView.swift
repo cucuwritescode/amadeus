@@ -1,5 +1,17 @@
+//
+//  SettingsView.swift
+//  amadeus
+//
+//  created by facundo franchino on 20/10/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  configuration view for analysis engine mode and server settings
+//  allows switching between http, coreml, and simulation modes
+//
+
 import SwiftUI
 
+//settings interface for configuring analysis backend and preferences
 struct SettingsView: View {
     @AppStorage("analysisMode") private var analysisMode = "http"
     @AppStorage("serverURL") private var serverURL = "http://192.168.68.121:8000"

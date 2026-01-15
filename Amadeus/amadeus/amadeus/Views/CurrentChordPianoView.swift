@@ -1,17 +1,29 @@
+//
+//  CurrentChordPianoView.swift
+//  amadeus
+//
+//  created by facundo franchino on 20/10/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  visual piano keyboard showing currently playing chord notes
+//  highlights active keys based on detected chord during playback
+//
+
 import SwiftUI
 
+//interactive piano visualisation highlighting current chord notes
 struct CurrentChordPianoView: View {
     @ObservedObject var audioManager: AudioManager
     
     private func getHighlightedKeysForChord(_ chordName: String) -> Set<Int> {
-        // Comprehensive chord mappings
+        // chord mappings
         let chordKey = chordName.lowercased().replacingOccurrences(of: " ", with: "")
         
-        // Parse chord into root note and quality
+        //parse chord into root note and quality
         var rootNote = 0
         var chordQuality = ""
         
-        // Extract root note
+        //extract root note
         if chordKey.hasPrefix("c#") || chordKey.hasPrefix("db") {
             rootNote = 1
             chordQuality = String(chordKey.dropFirst(2))
@@ -50,7 +62,7 @@ struct CurrentChordPianoView: View {
             chordQuality = String(chordKey.dropFirst(1))
         }
         
-        // Get chord intervals based on quality
+        //get chord intervals based on quality
         var intervals: [Int] = []
         
         switch chordQuality {
@@ -113,16 +125,16 @@ struct CurrentChordPianoView: View {
             intervals = [0, 4, 7]
         }
         
-        // Transpose intervals to the root note and ensure they fit in one octave
+        //transpose intervals to the root note and ensure they fit in one octave
         let finalKeys = intervals.map { interval in
             let transposed = (rootNote + interval) % 12
             return transposed
         }
         
-        // Remove duplicates that might occur from octave reduction
+        //remove duplicates that might occur from octave reduction
         let result = Set(finalKeys)
         
-        // Debug print to help diagnose chord mapping issues
+        //debug print to help diagnose chord mapping issues
         print("🎹 Chord: \(chordName) | Root: \(rootNote) | Quality: '\(chordQuality)' | Keys: \(result.sorted())")
         
         return result
@@ -145,7 +157,7 @@ struct CurrentChordPianoView: View {
                 CurrentChordPiano(
                     highlightedKeys: transposeKeys(
                         getHighlightedKeysForChord(audioManager.currentChord), 
-                        semitones: 0 // Don't double transpose - AudioManager already handles this
+                        semitones: 0 // don't double transpose, cos AudioManager already handles this
                     ),
                     chordName: audioManager.currentChord
                 )
@@ -153,7 +165,7 @@ struct CurrentChordPianoView: View {
                 .transition(.opacity.combined(with: .move(edge: .bottom)))
                 .animation(.easeInOut(duration: 0.3), value: audioManager.currentChord)
             } else {
-                // Empty space when no chord
+                //empty space when no chord
                 Spacer().frame(height: 80)
             }
         }
@@ -171,19 +183,19 @@ struct CurrentChordPiano: View {
     
     var body: some View {
         VStack(spacing: 4) {
-            // Chord name above piano
+            //chord name above piano
             Text(chordName)
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundColor(.primary)
             
-            // Compact piano
+            //compact piano
             GeometryReader { geometry in
                 let whiteKeyWidth = geometry.size.width / 7
                 let blackKeyWidth = whiteKeyWidth * 0.6
                 let blackKeyHeight = geometry.size.height * 0.65
                 
                 ZStack(alignment: .topLeading) {
-                    // White keys
+                    //white keys
                     HStack(spacing: 1) {
                         ForEach(0..<7, id: \.self) { keyIndex in
                             let noteValue = whiteKeyNotes[keyIndex]
@@ -194,7 +206,7 @@ struct CurrentChordPiano: View {
                         }
                     }
                     
-                    // Black keys
+                    //black keys
                     ForEach(Array(blackKeyNotes.enumerated()), id: \.offset) { index, noteValue in
                         let position = blackKeyPositions[index]
                         let xOffset = whiteKeyWidth * position

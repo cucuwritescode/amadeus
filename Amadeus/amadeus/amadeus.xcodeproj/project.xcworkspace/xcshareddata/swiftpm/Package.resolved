@@ -1,0 +1,24 @@
+{
+  "originHash" : "d294a884e7ae8fe7afcc11faef9c1eb9fdc379b91ceeb175ee5d42c993bab8c8",
+  "pins" : [
+    {
+      "identity" : "audiokit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AudioKit/AudioKit.git",
+      "state" : {
+        "revision" : "5b3fd238ef8ee95c9842ca4ea83ca58ee151e630",
+        "version" : "5.6.5"
+      }
+    },
+    {
+      "identity" : "tonic",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AudioKit/Tonic.git",
+      "state" : {
+        "revision" : "ed84c6add1c34895c8548632d50a19e9125b28d8",
+        "version" : "1.4.0"
+      }
+    }
+  ],
+  "version" : 3
+}

@@ -1,5 +1,18 @@
+//
+//  TimelineView.swift
+//  amadeus
+//
+//  created by facundo franchino on 14/10/2025.
+//  copyright © 2025 facundo franchino. all rights reserved.
+//
+//  main analysis results view with waveform, playback controls, and chord display
+//  provides transport controls, speed/pitch adjustment, and export options
+//
+//
+
 import SwiftUI
 
+//primary view for displaying analysis results and controlling playback
 struct TimelineView: View {
     @ObservedObject var audioManager: AudioManager
     @State private var isDraggingPlayhead = false
@@ -8,20 +21,20 @@ struct TimelineView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
-                // Header with Key and Current Chord
+                //header with key and current chord
                 HeaderSection(audioManager: audioManager)
                 
-                // Waveform and Chord Timeline
+                //waveform and chord timeline
                 WaveformSection(audioManager: audioManager)
                     .frame(height: 200)
                 
-                // Playback Controls
+                //playback controls
                 PlaybackSection(audioManager: audioManager)
                 
-                // Speed and Pitch Controls
+                //speed and pitch controls
                 ControlsSection(audioManager: audioManager)
                 
-                // Export/Share Options
+                //export/share options
                 ActionsSection(audioManager: audioManager)
             }
         }
@@ -54,7 +67,7 @@ struct HeaderSection: View {
     
     var body: some View {
         VStack(spacing: 16) {
-            // Current Chord Display (Large)
+            //current chord disp(large)
             VStack(spacing: 8) {
                 Text(audioManager.currentChord)
                     .font(.system(size: 60, weight: .bold, design: .rounded))
@@ -68,7 +81,7 @@ struct HeaderSection: View {
                     .tracking(1)
             }
             
-            // Key Information
+            //key info
             HStack(spacing: 20) {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Original Key")
@@ -110,13 +123,13 @@ struct WaveformSection: View {
     
     var body: some View {
         VStack(spacing: 12) {
-            // Waveform with tap-to-seek
+            //waveform with tap-to-seek
             WaveformVisualization(audioManager: audioManager)
                 .frame(height: 85)
                 .background(Color.black.opacity(0.05))
                 .cornerRadius(12)
             
-            // Current Chord Piano View
+            //current chord piano view
             CurrentChordPianoView(audioManager: audioManager)
         }
         .padding(.horizontal)
@@ -130,7 +143,7 @@ struct WaveformVisualization: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                // Waveform bars
+                //waveform bars
                 HStack(spacing: 2) {
                     ForEach(0..<50) { i in
                         RoundedRectangle(cornerRadius: 2)
@@ -149,7 +162,7 @@ struct WaveformVisualization: View {
                 }
                 .frame(maxHeight: .infinity, alignment: .center)
                 
-                // Progress overlay
+                // progress overlay
                 if audioManager.duration > 0 {
                     Rectangle()
                         .fill(Color.blue.opacity(0.2))
@@ -160,7 +173,7 @@ struct WaveformVisualization: View {
             }
             .contentShape(Rectangle())
             .onTapGesture { location in
-                // Tap to seek - calculate position relative to waveform
+                //tap to seek, calculate position relative to waveform
                 guard audioManager.duration > 0 else { return }
                 let ratio = max(0, min(1, location.x / geometry.size.width))
                 let seekTime = ratio * audioManager.duration
@@ -177,7 +190,7 @@ struct PlaybackSection: View {
     
     var body: some View {
         VStack(spacing: 16) {
-            // Time Display
+            //time display
             HStack {
                 Text(formatTime(audioManager.currentTime))
                     .font(.system(.body, design: .monospaced))
@@ -190,10 +203,10 @@ struct PlaybackSection: View {
             }
             .padding(.horizontal)
             
-            // Playback Controls
+            // playback controls
             HStack(spacing: 40) {
                 Button(action: { 
-                    // Skip backward exactly 5 seconds
+                    // skip backward exactly 5 seconds
                     let targetTime = audioManager.currentTime - 5.0
                     audioManager.seek(to: targetTime)
                 }) {
@@ -220,7 +233,7 @@ struct PlaybackSection: View {
                 }
                 
                 Button(action: { 
-                    // Skip forward exactly 5 seconds
+                    //skip forward exactly 5 seconds
                     let targetTime = audioManager.currentTime + 5.0
                     audioManager.seek(to: targetTime)
                 }) {
@@ -245,7 +258,7 @@ struct ControlsSection: View {
     
     var body: some View {
         VStack(spacing: 16) {
-            // Speed Control
+            //speed control
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
                     Image(systemName: "speedometer")
@@ -275,7 +288,7 @@ struct ControlsSection: View {
             }
             .cardStyle()
             
-            // Pitch Control
+            //pitch control
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
                     Image(systemName: "music.note")
@@ -399,7 +412,7 @@ struct ShareSheet: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
-        // No updates needed
+        //no updates needed
     }
 }
 
@@ -419,11 +432,10 @@ struct ActionsSection: View {
 // MARK: - MIDI Export Button
 struct MIDIExportButton: View {
     @ObservedObject var audioManager: AudioManager
-    @State private var showMIDISheet = false
-    @State private var midiData: Data?
-    
+    @State private var showComingSoonAlert = false
+
     var body: some View {
-        Button(action: exportMIDI) {
+        Button(action: { showComingSoonAlert = true }) {
             Label("Export MIDI", systemImage: "square.and.arrow.down")
                 .frame(maxWidth: .infinity)
                 .padding()
@@ -431,70 +443,10 @@ struct MIDIExportButton: View {
                 .foregroundColor(.purple)
                 .cornerRadius(10)
         }
-        .sheet(isPresented: $showMIDISheet) {
-            if let data = midiData {
-                if #available(iOS 16.0, *) {
-                    ShareSheet(items: [data])
-                        .presentationDetents([.medium])
-                } else {
-                    ShareSheet(items: [data])
-                }
-            }
+        .alert("Coming Soon", isPresented: $showComingSoonAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("MIDI export will be available in a future update.")
         }
-    }
-    
-    private func exportMIDI() {
-        // Create a simple MIDI file from the chord detections
-        guard !audioManager.analysisManager.chordDetections.isEmpty else {
-            print("No chord detections to export")
-            return
-        }
-        
-        // For now, create a placeholder MIDI data
-        // In a real implementation, this would generate actual MIDI from the note events
-        let midiHeader = "MIDI Export from Amadeus\n\nChords:\n"
-        var midiContent = midiHeader
-        
-        for detection in audioManager.analysisManager.chordDetections {
-            let chordName = audioManager.pitchShift != 0 ?
-                transposeChord(detection.chordName, semitones: audioManager.pitchShift) :
-                detection.chordName
-            midiContent += "\(formatTime(detection.startTime)): \(chordName)\n"
-        }
-        
-        midiData = midiContent.data(using: .utf8)
-        showMIDISheet = true
-    }
-    
-    private func formatTime(_ seconds: Double) -> String {
-        let mins = Int(seconds) / 60
-        let secs = Int(seconds) % 60
-        return String(format: "%d:%02d", mins, secs)
-    }
-    
-    private func transposeChord(_ chord: String, semitones: Int) -> String {
-        guard semitones != 0 else { return chord }
-        
-        let notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
-        let altNotes = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"]
-        
-        var rootNote = ""
-        var suffix = ""
-        
-        if chord.count >= 2 && (chord.dropFirst().first == "#" || chord.dropFirst().first == "b") {
-            rootNote = String(chord.prefix(2))
-            suffix = String(chord.dropFirst(2))
-        } else if chord.count >= 1 {
-            rootNote = String(chord.prefix(1))
-            suffix = String(chord.dropFirst(1))
-        } else {
-            return chord
-        }
-        
-        let currentIndex = notes.firstIndex(of: rootNote) ?? altNotes.firstIndex(of: rootNote) ?? 0
-        let newIndex = (currentIndex + semitones + 12) % 12
-        let newRoot = notes[newIndex]
-        
-        return "\(newRoot)\(suffix)"
     }
 }
