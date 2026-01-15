@@ -145,7 +145,7 @@ class ChordAssembler {
             let pitchClassToLetter: [Letter] = [.C, .C, .D, .D, .E, .F, .F, .G, .G, .A, .A, .B]
             let rootLetter = pitchClassToLetter[rootPitchClass % 12]
             let accidental: Accidental = [1, 3, 6, 8, 10].contains(rootPitchClass) ? .sharp : .natural
-            chord = Chord(NoteClass(rootLetter, accidental: accidental), type: .major)
+            chord = Chord(NoteClass(rootLetter, accidental: accidental), type: .majorTriad)
             print("    ⚠️ Tonic failed, fallback: \(chord.description)")
         }
         
