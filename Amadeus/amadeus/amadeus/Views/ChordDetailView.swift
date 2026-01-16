@@ -15,7 +15,8 @@ import SwiftUI
 struct ChordDetailView: View {
     let chordName: String
     let chordType: String
-    
+    @State private var showPlayAlert = false
+
     // Legacy view, keeping for backward compatibility
     var intervals: [String] {
         switch chordType {
@@ -105,7 +106,7 @@ struct ChordDetailView: View {
                 .padding()
                 
                 //play button
-                Button(action: playChord) {
+                Button(action: { showPlayAlert = true }) {
                     Label("Play Chord", systemImage: "play.circle.fill")
                         .font(.headline)
                         .frame(maxWidth: .infinity)
@@ -119,6 +120,11 @@ struct ChordDetailView: View {
         }
         .navigationTitle(chordName)
         .navigationBarTitleDisplayMode(.inline)
+        .alert("Coming Soon", isPresented: $showPlayAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("Audio playback will be available in a future update.")
+        }
     }
     
     func getHighlightedNotes() -> Set<Int> {
@@ -186,7 +192,8 @@ struct PianoView: View {
 struct EnhancedChordDetailView: View {
     let chord: ChordDefinition
     @State private var selectedRoot: String = "C"
-    
+    @State private var showPlayAlert = false
+
     let rootNotes = ["C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B"]
     
     var body: some View {
@@ -261,7 +268,7 @@ struct EnhancedChordDetailView: View {
                 .padding(.horizontal)
                 
                 // Play Button
-                Button(action: playChord) {
+                Button(action: { showPlayAlert = true }) {
                     Label("Play \(getChordSymbolForRoot())", systemImage: "play.circle.fill")
                         .font(.headline)
                         .frame(maxWidth: .infinity)
@@ -275,6 +282,11 @@ struct EnhancedChordDetailView: View {
         }
         .navigationTitle(chord.name)
         .navigationBarTitleDisplayMode(.inline)
+        .alert("Coming Soon", isPresented: $showPlayAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("Audio playback will be available in a future update.")
+        }
     }
     
     private func getChordSymbolForRoot() -> String {

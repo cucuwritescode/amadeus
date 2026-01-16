@@ -274,7 +274,8 @@ struct ScaleCategoryView: View {
 struct ScaleDetailView: View {
     let scale: ScaleDefinition
     @State private var selectedRoot: String = "C"
-    
+    @State private var showPlayAlert = false
+
     let rootNotes = ["C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B"]
     private let scaleDictionary = ScaleDictionary.shared
     
@@ -354,7 +355,7 @@ struct ScaleDetailView: View {
                 .padding(.horizontal)
                 
                 // play button
-                Button(action: playScale) {
+                Button(action: { showPlayAlert = true }) {
                     Label("Play \(selectedRoot) \(scale.name)", systemImage: "play.circle.fill")
                         .font(.headline)
                         .frame(maxWidth: .infinity)
@@ -368,6 +369,11 @@ struct ScaleDetailView: View {
         }
         .navigationTitle(scale.name)
         .navigationBarTitleDisplayMode(.inline)
+        .alert("Coming Soon", isPresented: $showPlayAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("Audio playback will be available in a future update.")
+        }
     }
     
     private func getHighlightedKeysForRoot() -> Set<Int> {

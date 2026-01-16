@@ -63,7 +63,8 @@ struct ChordCategoryView: View {
 struct ProgressionDetailView: View {
     let name: String
     let chords: [String]
-    
+    @State private var showPlayAlert = false
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
@@ -120,7 +121,7 @@ struct ProgressionDetailView: View {
                 }
                 
                 // Play Button
-                Button(action: playProgression) {
+                Button(action: { showPlayAlert = true }) {
                     Label("Play Progression", systemImage: "play.circle.fill")
                         .font(.headline)
                         .frame(maxWidth: .infinity)
@@ -134,8 +135,13 @@ struct ProgressionDetailView: View {
         }
         .navigationTitle(name)
         .navigationBarTitleDisplayMode(.inline)
+        .alert("Coming Soon", isPresented: $showPlayAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("Audio playback will be available in a future update.")
+        }
     }
-    
+
     func getProgressionDescription() -> String {
         switch name {
         case "ii–V–I":
@@ -168,7 +174,8 @@ struct EnhancedProgressionDetailView: View {
     let progression: ChordProgression
     @State private var selectedKey: String = "C"
     @State private var isMinorMode: Bool = false
-    
+    @State private var showPlayAlert = false
+
     let keys = ["C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B"]
     
     var body: some View {
@@ -374,7 +381,7 @@ struct EnhancedProgressionDetailView: View {
                 .padding(.horizontal)
                 
                 // Play Button
-                Button(action: playProgression) {
+                Button(action: { showPlayAlert = true }) {
                     Label("Play \(isMinorMode ? "Minor" : "Major") Progression", systemImage: "play.circle.fill")
                         .font(.headline)
                         .frame(maxWidth: .infinity)
@@ -388,6 +395,11 @@ struct EnhancedProgressionDetailView: View {
         }
         .navigationTitle(progression.name)
         .navigationBarTitleDisplayMode(.inline)
+        .alert("Coming Soon", isPresented: $showPlayAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("Audio playback will be available in a future update.")
+        }
     }
     
     private func getCurrentProgression() -> [ProgressionChord] {

@@ -43,12 +43,50 @@ class BasicPitchHTTPClient: ChordAnalyzer {
         print("BasicPitchHTTPClient initialized with server: \(serverURL)")
     }
     
+    //quick connectivity check, just tries to reach the server, not a full request
+    private func canReachServer() async -> Bool {
+        guard let url = URL(string: serverURL) else { return false }
+
+        //create a session with short timeout just for connectivity check
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 3  //3 seconds to establish connection
+        config.timeoutIntervalForResource = 3
+        let quickSession = URLSession(configuration: config)
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "HEAD"  //lightweight request, no body
+
+        do {
+            let (_, response) = try await quickSession.data(for: request)
+            //any response means server is reachable (even 404 is fine, server is there)
+            if let httpResponse = response as? HTTPURLResponse {
+                print("Server responded with status: \(httpResponse.statusCode)")
+                return true
+            }
+            return true
+        } catch {
+            print("Server not reachable: \(error.localizedDescription)")
+            return false
+        }
+    }
+
     //analyse audio using basic pitch server
     func analyze(audioBuffer: AVAudioPCMBuffer, sampleRate: Float) async -> [ChordDetection] {
         print("*** BASIC PITCH HTTP CLIENT ANALYZE() CALLED ***")
         print("Server URL: \(serverURL)")
         print("  • Buffer: \(audioBuffer.frameLength) frames @ \(sampleRate) Hz")
-        
+
+        //quick connectivity check before committing to full upload
+        print("Checking server connectivity...")
+        let serverReachable = await canReachServer()
+
+        if !serverReachable {
+            print("*** SERVER NOT REACHABLE - FALLING BACK TO SIMULATION ***")
+            return await SimulatedChordAnalyzer().analyze(audioBuffer: audioBuffer, sampleRate: sampleRate)
+        }
+
+        print("Server reachable, proceeding with full analysis...")
+
         do {
             //first convert audio buffer to wav data
             print("Converting audio buffer to WAV...")
