@@ -15,22 +15,40 @@
 
 import SwiftUI
 
+// MARK: - Analysis Completion View
+
+//success animation view shown after audio analysis completes
+//displays animated checkmark with staggered text reveal
 struct AnalysisCompletionView: View {
+    //main title text (e.g., "analysis complete!")
     let title: String
+
+    //subtitle providing additional info about results
     let subtitle: String
+
+    //callback invoked after animation sequence finishes
     let onComplete: () -> Void
-    
+
+    //tracks overall completion state (not currently used but available)
     @State private var isCompleted = false
+
+    //scale factor for checkmark pop animation
     @State private var checkmarkScale: Double = 0
+
+    //scale factor for background circle grow animation
     @State private var backgroundScale: Double = 0
+
+    //vertical offset for text slide-up animation
     @State private var textOffset: Double = 30
+
+    //opacity for text fade-in animation
     @State private var textOpacity: Double = 0
-    
+
     var body: some View {
         VStack(spacing: 30) {
-            // Animated success indicator
+            //animated success indicator container
             ZStack {
-                // Background circle
+                //background circle with gradient fill
                 Circle()
                     .fill(
                         LinearGradient(
@@ -41,23 +59,25 @@ struct AnalysisCompletionView: View {
                     )
                     .frame(width: 100, height: 100)
                     .scaleEffect(backgroundScale)
-                
-                // Checkmark
+
+                //checkmark icon with scale animation
                 Image(systemName: "checkmark")
                     .font(.system(size: 40, weight: .bold))
                     .foregroundColor(.white)
                     .scaleEffect(checkmarkScale)
             }
-            
-            // Text content
+
+            //text content with slide and fade animations
             VStack(spacing: 12) {
+                //main title with animation transforms
                 Text(title)
                     .font(.title2)
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.center)
                     .offset(y: textOffset)
                     .opacity(textOpacity)
-                
+
+                //subtitle with same animation transforms
                 Text(subtitle)
                     .font(.body)
                     .foregroundColor(.secondary)
@@ -67,33 +87,35 @@ struct AnalysisCompletionView: View {
             }
         }
         .padding(.horizontal, 40)
+        //trigger animation sequence when view appears
         .onAppear {
             animateCompletion()
         }
     }
-    
+
+    //orchestrates the staggered animation sequence
     private func animateCompletion() {
-        // Background circle animation
+        //first: grow background circle
         withAnimation(.easeOut(duration: 0.3)) {
             backgroundScale = 1.0
         }
-        
-        // Checkmark animation with delay
+
+        //second: pop in checkmark with bounce (0.2s delay)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             withAnimation(.bouncy(duration: 0.5)) {
                 checkmarkScale = 1.0
             }
         }
-        
-        // Text animation with delay
+
+        //third: slide up and fade in text (0.5s delay)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             withAnimation(.easeOut(duration: 0.4)) {
                 textOffset = 0
                 textOpacity = 1.0
             }
         }
-        
-        // Complete after all animations
+
+        //finally: call completion handler after all animations (1.5s total)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             onComplete()
         }
