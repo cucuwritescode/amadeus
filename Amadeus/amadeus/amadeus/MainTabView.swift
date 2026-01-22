@@ -37,11 +37,11 @@ struct MainTabView: View {
                 }
                 .tag(1)
             
-            //live tab, real-time chord detection from microphone
-            //records 30-second chunks for immediate analysis
+            //dense mix tab, source separation feature preview
+            //cloud-based stem separation for audio tracks
             LiveView()
                 .tabItem {
-                    Label("Live", systemImage: "mic.circle")
+                    Label("Stems", systemImage: "slider.horizontal.3")
                 }
                 .tag(2)
             

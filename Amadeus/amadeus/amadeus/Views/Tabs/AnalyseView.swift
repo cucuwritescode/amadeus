@@ -67,7 +67,7 @@ struct AnalyseView: View {
                                 .opacity(titleOpacity)
                                 .animation(.easeOut(duration: 0.5).delay(0.2), value: titleOpacity)
                             
-                            Text("Harmonic Analysis & Learning")
+                            Text("Learn Harmony. Build Repertoire.")
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
                                 .offset(y: subtitleOffset)
