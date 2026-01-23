@@ -21,3 +21,10 @@ An iOS system for **real-time multiple f₀ estimation**. The application receiv
 ## 📖 Documentation
 
 Full documentation is available at **[https://amadeus-chordzart.readthedocs.io](https://amadeus-chordzart.readthedocs.io)**
+
+
+## Current Implementation
+As it stands, the application works on a server-based manner. With a planned future implementation of the Basic Pitch model for iOS (CoreML).
+
+<div align="center">
+<img width="588" height="750" alt="Screenshot 2026-01-22 at 04 27 58" src="https://github.com/user-attachments/assets/38b7adb6-1093-4396-a87c-cbab37d7cf63" />
