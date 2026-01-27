@@ -9,5 +9,10 @@
 	</array>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Amadeus needs microphone access to record audio for chord analysis. Record songs and discover their chord progressions in real-time.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

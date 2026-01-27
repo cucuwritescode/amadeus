@@ -24,7 +24,7 @@ struct SettingsView: View {
     @AppStorage("analysisMode") private var analysisMode = "http"
 
     //persisted server url for http mode
-    @AppStorage("serverURL") private var serverURL = "http://192.168.68.121:8000"
+    @AppStorage("serverURL") private var serverURL = "http://139.59.188.51:8000"
 
     //temporary storage for custom url input (not currently used)
     @State private var customURL = ""

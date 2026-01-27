@@ -57,7 +57,7 @@ struct BasicPitchConfig {
     
     // MARK: - server configuration
     
-    static let defaultServerURL = "http://192.168.68.117:8000"
+    static let defaultServerURL = "http://139.59.188.51:8000"
     static let serverTimeout: TimeInterval = 120  //2 minutes
     
     //debug method to reset settings

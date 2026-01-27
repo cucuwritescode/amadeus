@@ -32,4 +32,4 @@ class BasicPitchAnalyzer: ChordAnalyzer {
         return await SimulatedChordAnalyzer().analyze(audioBuffer: audioBuffer, sampleRate: sampleRate)
     }
 }
-#imageLiteral(resourceName: "simulator_screenshot_DF770EE9-E737-42B5-987F-44D08277EE6B.png")
+
